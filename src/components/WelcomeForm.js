@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 // Basic outline of form
 
-class LoginForm extends Component {
+class WelcomeForm extends Component {
   render() {
     return (
       <div>
@@ -25,4 +25,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default WelcomeForm;
