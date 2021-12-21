@@ -1,4 +1,4 @@
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 
 
@@ -7,7 +7,7 @@ class LogoutBtn extends Component {
   render() {
     return (
       <div>
-        {/* // <Button onClick={}>Log In</Button> */}
+        <Button variant="outline-info" >Log Out</Button>
       </div>
     );
   }
