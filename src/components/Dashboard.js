@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import EventCard from './EventCard';
+import Search from './Search';
+
+
 
 
 class Dashboard extends Component {
@@ -6,6 +10,8 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>Dashboard</h1>
+        <Search />
+        <EventCard />
       </div>
     );
   }

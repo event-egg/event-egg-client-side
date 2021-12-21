@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+
 
 class SearchBtn extends Component {
   render() {
     return (
       <div>
-        {/* <Button onClick={}>Search</Button> */}
+        <Button>Search</Button>
       </div>
     );
   }

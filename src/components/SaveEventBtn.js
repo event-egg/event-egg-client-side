@@ -1,13 +1,12 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
-
+import Button from 'react-bootstrap/Button';
 
 
 class SaveEventBtn extends Component {
   render() {
     return (
       <div>
-        {/* // <Button onClick={}>Log In</Button> */}
+        <Button variant="outline-success">Save Event</Button>
       </div>
     );
   }
