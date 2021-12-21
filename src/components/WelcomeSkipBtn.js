@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 
-class LogoutBtn extends Component {
+class WelcomeSkipBtn extends Component {
   render() {
     return (
       <div>
@@ -13,4 +13,4 @@ class LogoutBtn extends Component {
   }
 }
 
-export default LogoutBtn;
+export default WelcomeSkipBtn;

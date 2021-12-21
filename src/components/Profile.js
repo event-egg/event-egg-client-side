@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 
 
 
-class LogoutBtn extends Component {
+class Profile extends Component {
   render() {
     return (
       <div>
-        {/* // <Button onClick={}>Log In</Button> */}
       </div>
     );
   }
 }
 
-export default LogoutBtn;
+export default Profile;
