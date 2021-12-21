@@ -17,11 +17,13 @@ import { Route } from 'react-router-dom';
 
 class App extends Component {
 
-
+  //   We are currently using the tempVars object to act as the state of our app
+  //   Changing tempVars.isAuthenticated to false will show the log in screen, true will show the rest of the app -->
+  //   Changing tempVars.userData to an empty object will show you the welcome screen, adding data to the object will show you the rest of the app
   tempVars = {
     isAuthenticated: true,
     userData: {
-      spencer: 'isCool'
+      // spencer: 'isCool'
     }
   }
 

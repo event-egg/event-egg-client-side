@@ -1,4 +1,4 @@
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 
 
@@ -7,7 +7,7 @@ class WelcomeSubmitBtn extends Component {
   render() {
     return (
       <div>
-        {/* // <Button onClick={}>Log In</Button> */}
+        <Button>Submit</Button>
       </div>
     );
   }

@@ -1,4 +1,6 @@
-// import Button from 'react-bootstrap/Button';
+import WelcomeForm from './WelcomeForm';
+import WelcomeSubmitBtn from './WelcomeSubmitBtn';
+import WelcomeSkipBtn from './WelcomeSkipBtn';
 import React, { Component } from 'react';
 
 
@@ -8,6 +10,9 @@ class Welcome extends Component {
     return (
       <div>
         <h1>Welcome</h1>
+        <WelcomeForm />
+        <WelcomeSubmitBtn />
+        <WelcomeSkipBtn />
       </div>
     );
   }
