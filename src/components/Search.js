@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchForm from './SearchForm';
 
-// Renders search form and search results
+// Renders search form
 
 class Search extends Component {
   render() {
