@@ -23,7 +23,7 @@ class App extends Component {
   tempVars = {
     isAuthenticated: true,
     userData: {
-      // spencer: 'isCool'
+      spencer: 'isCool'
     }
   }
 
