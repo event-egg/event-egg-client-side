@@ -8,7 +8,7 @@ class MyEvents extends Component {
   render() {
     return (
       <div>
-
+        <h1>MyEvents</h1>
       </div>
     );
   }
