@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 
-class Welcome extends Component {
+class EditProfile extends Component {
   render() {
     return (
       <div>
@@ -12,4 +12,4 @@ class Welcome extends Component {
   }
 }
 
-export default Welcome;
+export default EditProfile;
