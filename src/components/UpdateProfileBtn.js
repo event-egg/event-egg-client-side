@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 
 
 
-class Profile extends Component {
+class UpdateProfileBtn extends Component {
   render() {
     return (
       <div>
-        
+        {/* // <Button onClick={}>Log In</Button> */}
       </div>
     );
   }
 }
 
-export default Profile;
+export default UpdateProfileBtn;

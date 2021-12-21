@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 
 
 
-class Profile extends Component {
+class Welcome extends Component {
   render() {
     return (
       <div>
-        
       </div>
     );
   }
 }
 
-export default Profile;
+export default Welcome;
