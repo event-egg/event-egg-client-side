@@ -10,7 +10,7 @@ class MyEvents extends Component {
     return (
       <div>
         <h1>MyEvents</h1>
-        <EventCard />
+        <EventCard type="myEvent"/>
       </div>
     );
   }

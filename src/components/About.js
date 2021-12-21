@@ -1,5 +1,6 @@
 // import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
+import AboutCard from './AboutCard';
 
 
 
@@ -8,6 +9,7 @@ class About extends Component {
     return (
       <div>
         <h1>About</h1>
+        <AboutCard />
       </div>
     );
   }

@@ -11,7 +11,7 @@ class Dashboard extends Component {
       <div>
         <h1>Dashboard</h1>
         <Search />
-        <EventCard />
+        <EventCard type="newEvent"/>
       </div>
     );
   }
