@@ -26,17 +26,15 @@ class App extends Component {
     }
   }
 
-
-
   render() {
     return (
       <>
-        {!this.tempVars.isAuthenticated ?
+        { !this.tempVars.isAuthenticated ?
           <Login /> :
           <>
             <Header />
-            {/* if user data doesnt exist,  render welcome page, else router */}
-            {Object.keys(this.tempVars.userData).length === 0 ?
+            { /* if user data doesnt exist,  render welcome page, else router */}
+            { Object.keys(this.tempVars.userData).length === 0 ?
               <Welcome /> :
               <Router>
                 <Routes>
