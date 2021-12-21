@@ -6,7 +6,7 @@ class SaveEventBtn extends Component {
   render() {
     return (
       <div>
-        <Button variant="outline-success">Log In</Button>
+        <Button variant="outline-success">Save Event</Button>
       </div>
     );
   }
