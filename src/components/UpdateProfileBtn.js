@@ -1,13 +1,18 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
-
+import Button from 'react-bootstrap/Button';
 
 
 class UpdateProfileBtn extends Component {
+
+  handleClick = () => {
+    //handle post request
+    this.props.closeModal()
+  }
+
   render() {
     return (
       <div>
-        {/* // <Button onClick={}>Log In</Button> */}
+        <Button onClick={this.handleClick}>Update</Button>
       </div>
     );
   }

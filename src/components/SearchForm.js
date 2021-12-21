@@ -7,7 +7,7 @@ class SearchForm extends Component {
   render() {
     return (
       <div>
-                <Form>
+        <Form>
           <Form.Group className="mb-3" controlId="formBasicCity" >
             <Form.Label>City</Form.Label>
             <Form.Control type="text" placeholder="city" />

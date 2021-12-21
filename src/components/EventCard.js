@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import SaveEventBtn from './SaveEventBtn';
+import RemoveEventBtn from './RemoveEventBtn';
 
 
 
@@ -17,7 +18,8 @@ class EventCard extends Component {
           <Card.Text>
             Wow! This event is so cool!
           </Card.Text>
-          <SaveEventBtn />
+          {/* conditially render button based on where the event card is being rendered */}
+          {this.props.type === 'newEvent' ? <SaveEventBtn /> : <RemoveEventBtn />}
         </Card.Body>
       </Card>
     );
