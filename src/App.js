@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -32,20 +31,20 @@ class App extends Component {
         { !this.tempVars.isAuthenticated ?
           <Login /> :
           <>
-            <Header />
             { /* if user data doesnt exist,  render welcome page, else router */}
             { Object.keys(this.tempVars.userData).length === 0 ?
               <Welcome /> :
               <Router>
+              <Header />
                 <Routes>
-                  <Route exact path="/" element={<Dashboard />} />
-                  <Route exact path="/myEvents" element={<MyEvents />} />
-                  <Route exact path="/profile" element={<Profile />} />
-                  <Route exact path="/about" element={<About />} />
+                  <Route path="/" element={<Dashboard />} />
+                    <Route path="/myEvents" element={<MyEvents />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/about" element={<About />} />
                 </Routes>
+                <Footer />
               </ Router>
             }
-            <Footer />
           </>
         }
       </>
