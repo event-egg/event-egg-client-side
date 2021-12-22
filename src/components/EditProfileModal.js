@@ -12,7 +12,6 @@ class EditProfileModal extends Component {
 
   handleProfileSubmit = (e) => {
     e.preventDefault();
-    console.log("in handle:", this.props.user.defaultCity)
     let interestArray = [];
     e.target.interestCheckboxes.forEach(elem => {
       if (e.target[elem.id].checked) {
@@ -20,13 +19,13 @@ class EditProfileModal extends Component {
       }
     });
     const user = {
-      // name: this.props.auth0.user.name || this.props.user.name,
+      // this.props.auth0.user.name || 
+      name: this.props.user.name,
       defaultCity: e.target.city.value.toLowerCase() || this.props.user.defaultCity,
       defaultInterests: interestArray,
-      email: 'fakeemail@email.com'
-      // email: this.props.auth0.user.email || this.props.user.email,
+      // this.props.auth0.user.email ||
+      email: this.props.user.email,
     }
-    console.log(this.props.user._id);
     this.props.updateUser(user, this.props.user._id);
   }
 
@@ -46,7 +45,7 @@ class EditProfileModal extends Component {
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
               <Form.Label>Interests</Form.Label>
-              <Col>
+                  <Col>
                 <Form.Check
                   type="checkbox"
                   label="movies"
