@@ -25,14 +25,15 @@ class WelcomeForm extends Component {
       email: 'fakeemail@email.com'
       // email: this.props.auth0.user.email
     }
-    this.props.updateUser(user);
+    this.props.createUser(user);
   }
 
   // name: String,
-//   defaultCity: String,
-//   defaultInterests: Array,
-//   savedEvents: Array,
-//   email: String
+  //   defaultCity: String,
+  //   defaultInterests: Array,
+  //   savedEvents: Array,
+  //   email: String
+
   render() {
     return (
       <div>

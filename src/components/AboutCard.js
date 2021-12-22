@@ -14,7 +14,7 @@ class AboutCard extends Component {
           <Card.Body>
             <Card.Text>
               <p>Bio goes here</p>
-              <a href="#">LinkedIn link </a>
+              {/* <a href="#">LinkedIn link </a> */}
             </Card.Text>
           </Card.Body>
         </Card>
