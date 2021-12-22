@@ -20,24 +20,30 @@ class App extends Component {
   //   We are currently using the tempVars object to act as the state of our app
   //   Changing tempVars.isAuthenticated to false will show the log in screen, true will show the rest of the app -->
   //   Changing tempVars.userData to an empty object will show you the welcome screen, adding data to the object will show you the rest of the app
+  // user: {
+  //   "name": "Andrew",
+  //   "defaultCity": "Seattle",
+  //   "defaultInterests": ["cats", "drinks", "facial hair", "movies", "coffee", "theatre"],
+  //   "savedEvents": [],
+  //   "email": "and.rw@this.com"
+  // }
+
+
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        "name": "Andrew",
-        "defaultCity": "Seattle",
-        "defaultInterests": ["cats", "drinks", "facial hair", "movies", "coffee", "theatre"],
-        "savedEvents": [],
-        "email": "and.rw@this.com"
-      }
+      user: {}
     }
+    //call get userdata here here -for Daniel
   }
+
+  //make handleGetUser function here -for Daniel 
 
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
       let newUser = await axios.post('http://localhost:3001/user', user);
-      this.setState({ user: newUser });
+      this.setState({ user: newUser.data });
     } catch (err) {
       console.log(err);
     }
@@ -46,8 +52,8 @@ class App extends Component {
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
-      let updatedUser = await axios.put('http://localhost:3001/user/61c23f9a2030655404de5c97', user);
-      this.setState({ user: updatedUser });
+      let updatedUser = await axios.put(`http://localhost:3001/user/${id}`, user);
+      this.setState({ user: updatedUser.data });
     } catch (err) {
       console.log(err)
     }
@@ -56,9 +62,6 @@ class App extends Component {
 
   tempVars = {
     isAuthenticated: true,
-    userData: {
-      spencer: 'isCool'
-    }
   }
 
   render() {
@@ -68,12 +71,12 @@ class App extends Component {
           <Login /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
-            {Object.keys(this.tempVars.userData).length === 0 ?
+            {Object.keys(this.state.user).length === 0 ?
               <Welcome createUser={this.createUser} /> :
               <Router>
                 <Header />
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<Dashboard user={this.state.user}/>} />
                   <Route path="/myEvents" element={<MyEvents />} />
                   <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} />} />
                   <Route path="/about" element={<About />} />

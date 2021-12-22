@@ -4,7 +4,6 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import UpdateProfileBtn from './UpdateProfileBtn';
 
 
 
@@ -13,6 +12,7 @@ class EditProfileModal extends Component {
 
   handleProfileSubmit = (e) => {
     e.preventDefault();
+    console.log("in handle:", this.props.user.defaultCity)
     let interestArray = [];
     e.target.interestCheckboxes.forEach(elem => {
       if (e.target[elem.id].checked) {
@@ -26,6 +26,7 @@ class EditProfileModal extends Component {
       email: 'fakeemail@email.com'
       // email: this.props.auth0.user.email || this.props.user.email,
     }
+    console.log(this.props.user._id);
     this.props.updateUser(user, this.props.user._id);
   }
 
@@ -36,11 +37,11 @@ class EditProfileModal extends Component {
           <Modal.Header>
             <Modal.Title>Edit Profile</Modal.Title>
           </Modal.Header>
-          <Modal.Body> 
+          <Modal.Body>
         <Form onSubmit={this.handleProfileSubmit}>
           <Form.Group className="mb-3" controlId="city" >
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder={this.props.user.defaultCity} />
+            <Form.Control type="text" placeholder={this.props.user.defaultCity}/>
           </Form.Group>
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
@@ -92,12 +93,12 @@ class EditProfileModal extends Component {
               </Col>
             </Form.Group>
           </fieldset>
-          <Button type='submit'>Submit</Button>
+          <Button type='submit'>Update</Button>
         </Form>
             
           </Modal.Body>
           <Modal.Footer>
-            <UpdateProfileBtn variant="primary" closeModal={this.props.closeModal} />
+            {/* <UpdateProfileBtn variant="primary" closeModal={this.props.closeModal} /> */}
             <Button variant="secondary" onClick={this.props.closeModal}>
               Close
             </Button>

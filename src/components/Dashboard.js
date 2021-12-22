@@ -9,9 +9,10 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <h1>Dashboard</h1>
-        <Search />
+        <h1>{this.props.user.defaultCity}</h1> 
+        {/* //Test to see if user has data in it -K -S */}
         <EventCard type="newEvent"/>
+        
       </div>
     );
   }
