@@ -47,6 +47,7 @@ class EditProfileModal extends Component {
             <Form.Group className="mb-3" controlId="interests" >
               <Form.Label>Interests</Form.Label>
               <Col>
+                    {console.log(this.props.user.defaultInterests)}
                 <Form.Check
                   type="checkbox"
                   label="movies"

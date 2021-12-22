@@ -38,11 +38,24 @@ class App extends Component {
   }
 
   //make handleGetUser function here -for Daniel 
+  getUserData = async (email) => { // this user will be replaced once OAuth has been implemented
+    try {
+      let userFromDB = await axios.get(`http://localhost:3001/user?email=${email}`);
+      console.log(userFromDB.data, ' logged in!')
+      this.setState({ user: userFromDB.data });
+    } catch (err) {
+      // alert('no');
+      console.log(err);
+    }
+  }
 
+  // componentDidMount() {
+  //   this.getUserData();
+  // }
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
-      let newUser = await axios.post('http://localhost:3001/user', user);
+      let newUser = await axios.post(`http://localhost:3001/user`, user);
       this.setState({ user: newUser.data });
     } catch (err) {
       console.log(err);
@@ -52,6 +65,7 @@ class App extends Component {
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
+      console.log(process.env.DB_URL);
       let updatedUser = await axios.put(`http://localhost:3001/user/${id}`, user);
       this.setState({ user: updatedUser.data });
     } catch (err) {
@@ -67,8 +81,8 @@ class App extends Component {
   render() {
     return (
       <>
-        {!this.tempVars.isAuthenticated ?
-          <Login /> :
+        {Object.keys(this.state.user).length === 0 ?
+          <Login getUserData={this.getUserData} /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
             {Object.keys(this.state.user).length === 0 ?
