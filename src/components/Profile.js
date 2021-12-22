@@ -30,7 +30,7 @@ class Profile extends Component {
     return (
       <div>
         <h3> Some Profile Data </h3>
-        <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal}/>
+        <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser}/>
         <Button onClick={() => this.showModal()} >Edit Profile</Button>
       </div>
     );

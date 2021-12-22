@@ -8,12 +8,12 @@ import Welcome from './components/Welcome';
 import MyEvents from './components/MyEvents';
 import Profile from './components/Profile';
 import About from './components/About';
+import axios from 'axios';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
-const axios = require('axios');
 
 class App extends Component {
 
@@ -37,7 +37,7 @@ class App extends Component {
       }
     } else {
       try {
-        let updatedUser = await axios.patch('http://localhost:3001/user/61c23f9a2030655404de5c97', user);
+        let updatedUser = await axios.put('http://localhost:3001/user/61c23f9a2030655404de5c97', user);
         this.setState({ user: updatedUser });
       } catch (err) {
         console.log(err)
@@ -59,15 +59,15 @@ class App extends Component {
           <Login /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
-            { Object.keys(this.tempVars.userData).length === 0 ?
+            {Object.keys(this.tempVars.userData).length === 0 ?
               <Welcome updateUser={this.updateUser} /> :
               <Router>
-              <Header />
+                <Header />
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
-                    <Route path="/myEvents" element={<MyEvents />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/about" element={<About />} />
+                  <Route path="/myEvents" element={<MyEvents />} />
+                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser}/>} />
+                  <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />
               </ Router>
