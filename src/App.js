@@ -40,11 +40,9 @@ class App extends Component {
   //make handleGetUser function here -for Daniel 
   getUserData = async (email) => { // this user will be replaced once OAuth has been implemented
     try {
-      let userFromDB = await axios.get(`http://localhost:3001/user?email=${email}`);
-      console.log(userFromDB.data, ' logged in!')
+      let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${email}`);
       this.setState({ user: userFromDB.data });
     } catch (err) {
-      // alert('no');
       console.log(err);
     }
   }
@@ -55,7 +53,7 @@ class App extends Component {
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
-      let newUser = await axios.post(`http://localhost:3001/user`, user);
+      let newUser = await axios.post(`${process.env.REACT_APP_DB_URL}/user`, user);
       this.setState({ user: newUser.data });
     } catch (err) {
       console.log(err);
@@ -65,8 +63,8 @@ class App extends Component {
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
-      console.log(process.env.DB_URL);
-      let updatedUser = await axios.put(`http://localhost:3001/user/${id}`, user);
+
+      let updatedUser = await axios.patch(`${process.env.REACT_APP_DB_URL}/user/${id}`, user);
       this.setState({ user: updatedUser.data });
     } catch (err) {
       console.log(err)
@@ -85,9 +83,9 @@ class App extends Component {
           <Login getUserData={this.getUserData} /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
-            {Object.keys(this.state.user).length === 0 ?
+            {/* {Object.keys(this.state.user).length === 0 ? */}
               <Welcome createUser={this.createUser} /> :
-              <Router>
+            {/* <Router>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Dashboard user={this.state.user}/>} />
@@ -96,8 +94,8 @@ class App extends Component {
                   <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />
-              </ Router>
-            }
+              </ Router> */}
+            {/* } */}
           </>
         }
       </>

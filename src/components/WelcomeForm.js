@@ -12,20 +12,38 @@ class WelcomeForm extends Component {
 
   handleWelcomeSubmit = (e) => {
     e.preventDefault();
-    let interestArray = [];
-    e.target.interestCheckboxes.forEach(elem => {
-      if (e.target[elem.id].checked) {
-        interestArray.push(elem.id);
+    if (e.nativeEvent.submitter.name === 'submit') {
+      let interestArray = [];
+      e.target.interestCheckboxes.forEach(elem => {
+        if (e.target[elem.id].checked) {
+          interestArray.push(elem.id);
+        }
+      });
+      const user = {
+        // name: this.props.auth0.user.name,
+        defaultCity: e.target.city.value.toLowerCase(),
+        defaultInterests: interestArray,
+        email: 'fakeemail@email.com'
+        // email: this.props.auth0.user.email
       }
-    });
-    const user = {
-      // name: this.props.auth0.user.name,
-      defaultCity: e.target.city.value.toLowerCase(),
-      defaultInterests: interestArray,
-      email: 'fakeemail@email.com'
-      // email: this.props.auth0.user.email
+      this.props.createUser(user);
+
+    } else if (e.nativeEvent.submitter.name === 'skip') {
+      let interestArray = [];
+      e.target.interestCheckboxes.forEach(elem => {
+        if (e.target[elem.id].checked) {
+          interestArray.push(elem.id);
+        }
+      });
+      const user = {
+        // name: this.props.auth0.user.name,
+        defaultCity: e.target.city.value.toLowerCase(),
+        defaultInterests: interestArray,
+        email: 'fakeemail@email.com'
+        // email: this.props.auth0.user.email
+      }
+      this.props.createUser(user);
     }
-    this.props.createUser(user);
   }
 
   // name: String,
@@ -88,7 +106,8 @@ class WelcomeForm extends Component {
               </Col>
             </Form.Group>
           </fieldset>
-          <Button type='submit'>Submit</Button>
+          <Button type='submit' name='submit' >Submit</Button>
+          <Button type='submit' name='skip'>Skip</Button>
         </Form>
       </div>
     );
