@@ -31,9 +31,7 @@ class WelcomeForm extends Component {
     } else if (e.nativeEvent.submitter.name === 'skip') {
       let interestArray = [];
       e.target.interestCheckboxes.forEach(elem => {
-        if (e.target[elem.id].checked) {
-          interestArray.push(elem.id);
-        }
+        interestArray.push(elem.id);
       });
       const user = {
         // name: this.props.auth0.user.name,
@@ -45,12 +43,6 @@ class WelcomeForm extends Component {
       this.props.createUser(user);
     }
   }
-
-  // name: String,
-  //   defaultCity: String,
-  //   defaultInterests: Array,
-  //   savedEvents: Array,
-  //   email: String
 
   render() {
     return (

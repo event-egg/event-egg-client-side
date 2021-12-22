@@ -32,7 +32,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      isAuthenticated: false
     }
     //call get userdata here here -for Daniel
   }
@@ -41,7 +42,7 @@ class App extends Component {
   getUserData = async (email) => { // this user will be replaced once OAuth has been implemented
     try {
       let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${email}`);
-      this.setState({ user: userFromDB.data });
+      this.setState({ user: userFromDB.data, isAuthenticated: true });
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +64,6 @@ class App extends Component {
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
-
       let updatedUser = await axios.patch(`${process.env.REACT_APP_DB_URL}/user/${id}`, user);
       this.setState({ user: updatedUser.data });
     } catch (err) {
@@ -71,21 +71,16 @@ class App extends Component {
     }
   }
 
-
-  tempVars = {
-    isAuthenticated: true,
-  }
-
   render() {
     return (
       <>
-        {Object.keys(this.state.user).length === 0 ?
+        {this.state.isAuthenticated === false ?
           <Login getUserData={this.getUserData} /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
-            {/* {Object.keys(this.state.user).length === 0 ? */}
+            {Object.keys(this.state.user).length === 0 ?
               <Welcome createUser={this.createUser} /> :
-            {/* <Router>
+              <Router>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Dashboard user={this.state.user}/>} />
@@ -94,8 +89,8 @@ class App extends Component {
                   <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />
-              </ Router> */}
-            {/* } */}
+              </ Router>
+            }
           </>
         }
       </>
