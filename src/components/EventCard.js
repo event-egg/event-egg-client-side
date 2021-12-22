@@ -11,7 +11,7 @@ class EventCard extends Component {
   render() {
     return (
       <Card style={{ width: '18rem' }}>
-        <Card.Header>Cool Event!</Card.Header>
+        <Card.Header></Card.Header>
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>Cool Event Title</Card.Title>

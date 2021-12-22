@@ -9,6 +9,7 @@ import MyEvents from './components/MyEvents';
 import Profile from './components/Profile';
 import About from './components/About';
 import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner'
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
@@ -32,7 +33,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      isLoading: true
     }
     //call get userdata here here -for Daniel
   }
@@ -41,7 +43,11 @@ class App extends Component {
   getUserData = async () => { // this user will be replaced once OAuth has been implemented
     try {
       let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${this.props.auth0.user.email}`);
-      this.setState({ user: userFromDB.data });
+      this.setState({ user: userFromDB.data }, () => {
+        setTimeout(() => {
+          this.setState({isLoading: false});
+        }, 1000); // <------- adjust this to adjust spinner time
+      });
     } catch (err) {
       console.log(err);
     }
@@ -67,15 +73,25 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const { getAccessTokenSilently } = this.props.auth0; 
+    getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
+  }
+
   render() {
-    this.getUserData(); //This is currently causing the welcome screen to render for a split second before moving to the dashboard once the get user request returns.
+
     return (
       <>
-        {!this.props.auth0.isAuthenticated ?
+        {!(this.props.auth0.isAuthenticated) ?
           <Login /> :
           <>
-            { /* if user data doesnt exist,  render welcome page, else router */}
-            {Object.keys(this.state.user).length === 0 ?
+            {
+              this.state.isLoading  || this.props.auth0.isLoading ?
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+              : 
+              Object.keys(this.state.user).length === 0 ?
               <Welcome createUser={this.createUser} /> :
               <Router>
                 <Header />
