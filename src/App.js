@@ -13,7 +13,7 @@ import axios from 'axios';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-
+import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {
 
@@ -32,25 +32,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
-      isAuthenticated: false
+      user: {}
     }
     //call get userdata here here -for Daniel
   }
 
   //make handleGetUser function here -for Daniel 
-  getUserData = async (email) => { // this user will be replaced once OAuth has been implemented
+  getUserData = async () => { // this user will be replaced once OAuth has been implemented
     try {
-      let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${email}`);
-      this.setState({ user: userFromDB.data, isAuthenticated: true });
+      let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${this.props.auth0.user.email}`);
+      this.setState({ user: userFromDB.data });
     } catch (err) {
       console.log(err);
     }
   }
-
-  // componentDidMount() {
-  //   this.getUserData();
-  // }
+  
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
@@ -72,10 +68,11 @@ class App extends Component {
   }
 
   render() {
+    this.getUserData(); //This is currently causing the welcome screen to render for a split second before moving to the dashboard once the get user request returns.
     return (
       <>
-        {this.state.isAuthenticated === false ?
-          <Login getUserData={this.getUserData} /> :
+        {!this.props.auth0.isAuthenticated ?
+          <Login /> :
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
             {Object.keys(this.state.user).length === 0 ?
@@ -98,4 +95,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
