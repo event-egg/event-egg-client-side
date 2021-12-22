@@ -23,7 +23,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: {
+        "name": "Andrew",
+        "defaultCity": "Seattle",
+        "defaultInterests": ["cats", "drinks", "facial hair", "movies", "coffee", "theatre"],
+        "savedEvents": [],
+        "email": "and.rw@this.com"
+      }
     }
   }
 
@@ -51,7 +57,7 @@ class App extends Component {
   tempVars = {
     isAuthenticated: true,
     userData: {
-      // spencer: 'isCool'
+      spencer: 'isCool'
     }
   }
 
