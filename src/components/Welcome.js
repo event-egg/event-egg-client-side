@@ -10,7 +10,7 @@ class Welcome extends Component {
     return (
       <div>
         <h1>Welcome</h1>
-        <WelcomeForm user={this.props.user} />
+        <WelcomeForm createUser={this.props.createUser} />
         <WelcomeSkipBtn />
       </div>
     );

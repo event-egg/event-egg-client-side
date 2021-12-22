@@ -27,23 +27,26 @@ class App extends Component {
     }
   }
 
-  updateUser = async (user) => {
-    if (this.state.user === {}) {
-      try {
-        let newUser = await axios.post('http://localhost:3001/user', user);
-        this.setState({ user: newUser });
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      try {
-        let updatedUser = await axios.put('http://localhost:3001/user/61c23f9a2030655404de5c97', user);
-        this.setState({ user: updatedUser });
-      } catch (err) {
-        console.log(err)
-      }
+  // called in WelcomeForm.js
+  createUser = async (user) => {
+    try {
+      let newUser = await axios.post('http://localhost:3001/user', user);
+      this.setState({ user: newUser });
+    } catch (err) {
+      console.log(err);
     }
   }
+
+  //called in ProfileUpdateModal.js
+  updateUser = async (user, id) => {
+    try {
+      let updatedUser = await axios.put('http://localhost:3001/user/61c23f9a2030655404de5c97', user);
+      this.setState({ user: updatedUser });
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   tempVars = {
     isAuthenticated: true,
@@ -60,13 +63,13 @@ class App extends Component {
           <>
             { /* if user data doesnt exist,  render welcome page, else router */}
             {Object.keys(this.tempVars.userData).length === 0 ?
-              <Welcome updateUser={this.updateUser} /> :
+              <Welcome createUser={this.createUser} /> :
               <Router>
                 <Header />
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/myEvents" element={<MyEvents />} />
-                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser}/>} />
+                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} />} />
                   <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />

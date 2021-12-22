@@ -19,15 +19,44 @@ class ProfileUpdateModal extends Component {
       }
     });
     const user = {
-      // name: this.props.auth0.user.name,
-      defaultCity: e.target.city.value.toLowerCase(),
+      // name: this.props.auth0.user.name || this.props.user.name,
+      defaultCity: e.target.city.value.toLowerCase() || this.props.user.defaultCity,
       defaultInterests: interestArray,
       email: 'fakeemail@email.com'
-      // email: this.props.auth0.user.email
+      // email: this.props.auth0.user.email || this.props.user.email,
     }
-    this.props.updateUser(user);
+    this.props.updateUser(user, this.props.user._id);
   }
 
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    const updatedBook = {
+      title: e.target.title.value || this.props.book.title,
+      description: e.target.description.value || this.props.book.description,
+      email: this.props.email,
+      status: e.target.status.value || this.props.book.status
+    }
+    console.log('this.props.book._id', this.props.book._id);
+    this.props.updateBook(updatedBook, this.props.book._id)
+    this.props.closeModal();
+  }
+
+  handleClose = () => {
+    this.props.closeModal();
+  }
+
+  componentDidMount(e) {
+    //Fill out checkboxes
+    this.props.user.defaultInterests.forEach(elem => {
+      e.target.interestCheckboxes.forEach(formElem => {
+        if (elem === formElem.id) {
+          formElem.checked = true;
+        }
+      })
+    })
+  }
 
 
   render() {
@@ -36,7 +65,7 @@ class ProfileUpdateModal extends Component {
         <Form onSubmit={this.handleProfileSubmit}>
           <Form.Group className="mb-3" controlId="city" >
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder="city" />
+            <Form.Control type="text" placeholder="this.props.user.defaultCity" />
           </Form.Group>
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
@@ -55,7 +84,6 @@ class ProfileUpdateModal extends Component {
                   label="music"
                   name="interestCheckboxes"
                   id="music"
-
                 />
               </Col>
               <Col>
