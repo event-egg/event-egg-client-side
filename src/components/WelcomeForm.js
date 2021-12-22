@@ -30,9 +30,6 @@ class WelcomeForm extends Component {
 
     } else if (e.nativeEvent.submitter.name === 'skip') {
       let interestArray = [];
-      e.target.interestCheckboxes.forEach(elem => {
-        interestArray.push(elem.id);
-      });
       const user = {
         // name: this.props.auth0.user.name,
         defaultCity: e.target.city.value.toLowerCase(),
@@ -69,7 +66,6 @@ class WelcomeForm extends Component {
                   label="music"
                   name="interestCheckboxes"
                   id="music"
-
                 />
               </Col>
               <Col>
