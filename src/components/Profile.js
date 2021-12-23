@@ -6,6 +6,8 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Badge from 'react-bootstrap/Badge'
+import Stack from 'react-bootstrap/Stack'
+import Container from 'react-bootstrap/Container'
 
 
 
@@ -37,22 +39,30 @@ class Profile extends Component {
   render() {
     return (
       <Card>
-        <Card.Title>Your Profile</Card.Title>
-        <Card.Header>{this.props.user.name}</Card.Header>
-        <ListGroup variant="flush">
-          <ListGroupItem>Email: {this.props.user.email}</ListGroupItem>
-          <ListGroupItem>Location: {this.props.user.defaultCity}</ListGroupItem>
-          <ListGroupItem>Interests:
-            {
-              this.props.user.defaultInterests.map(interest => 
-              <Badge pill bg="info">{interest}</Badge>)
-            }
-          </ListGroupItem>
-        </ListGroup>
-        <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
-        <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
-        <Button onClick={() => this.showModal('profile')} >Edit Profile</Button>
-        <Button variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+        <Container>
+          <Card.Body>
+            <Card.Title>Your Profile</Card.Title>
+            <Card.Header>{this.props.user.name}</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroupItem>Email: {this.props.user.email}</ListGroupItem>
+              <ListGroupItem>Location: {this.props.user.defaultCity}</ListGroupItem>
+              <ListGroupItem>Interests: <br />
+                {
+                  this.props.user.defaultInterests.map(interest =>
+                    <Badge pill bg="success" key={interest}>{interest}</Badge>)
+                }
+              </ListGroupItem>
+            </ListGroup>
+          </Card.Body>
+          <Stack direction="horizontal" xs={2} gap={4}>
+            <Button size="lg" variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
+            <Button size="lg" variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+          </Stack>
+
+          <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
+          <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
+
+        </Container>
       </Card>
     );
   }
