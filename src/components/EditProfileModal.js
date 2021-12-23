@@ -24,13 +24,13 @@ class EditProfileModal extends Component {
       email: this.props.user.email,
     }
     this.props.updateUser(user, this.props.user._id);
-    this.props.closeModal();
+    this.props.closeModal('profile');
   }
 
   render() {
     return (
       <div>
-        <Modal className="pt-5" show={this.props.show} onHide={this.props.closeModal}>
+        <Modal className="pt-5" show={this.props.show} onHide={() => this.props.closeModal('profile')}>
           <Modal.Header>
             <Modal.Title>Edit Profile</Modal.Title>
           </Modal.Header>
@@ -91,7 +91,7 @@ class EditProfileModal extends Component {
             </Form.Group>
           </fieldset>
           <div className="d-flex flex-row-reverse bd-highlight">
-          <Button className="mx-1" variant="secondary" onClick={this.props.closeModal}>Close</Button>
+          <Button className="mx-1" variant="secondary" onClick={() => this.props.closeModal('profile')}>Close</Button>
           <Button className="mx-1" type='submit'>Update</Button>
           </ div>
         </Form>

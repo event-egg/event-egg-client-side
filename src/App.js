@@ -105,7 +105,24 @@ class App extends Component {
     }
   }
 
+  deleteUser = async (user, id) => {
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
 
+      const jwt = res.__raw;
+      const config = {
+        method: 'delete',
+        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        url: `/user/${user._id}`,
+        headers: { "Authorization": `Bearer ${jwt}` }
+      }
+      await axios(config);
+      this.setState({ user: {}})
+      
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
 
 
@@ -135,7 +152,7 @@ class App extends Component {
                 <Routes>
                   <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user}/>} />
                   <Route path="/myEvents" element={<MyEvents />} />
-                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} />} />
+                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser}/>} />
                   <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />
