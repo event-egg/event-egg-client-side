@@ -117,6 +117,24 @@ class App extends Component {
     }
   }
 
+  saveEvent = async (user, event) => {
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        method: 'post',
+        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        url: `/events/${user._id}`,
+        data: event,
+        headers: { "Authorization": `Bearer ${jwt}` }
+      }
+      const userUpdatedWithEvents = await axios(config);
+      this.setState({ user: userUpdatedWithEvents.data })
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   componentDidMount() {
     const { getAccessTokenSilently } = this.props.auth0; 
     getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
@@ -140,10 +158,10 @@ class App extends Component {
               <Router>
                 <Header />
                   <Routes>
-                    <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user}/>} />
-                    <Route path="/myEvents" element={<MyEvents />} />
-                    <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser}/>} />
-                    <Route path="/about" element={<About />} />
+                      <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} saveEvent={this.saveEvent} />} />
+                      <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} />} />
+                      <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
+                      <Route path="/about" element={<About />} /> 
                   </Routes>
                 <Footer />
               </ Router>
