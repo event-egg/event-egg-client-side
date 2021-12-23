@@ -41,17 +41,31 @@ class App extends Component {
 
   //make handleGetUser function here -for Daniel 
   getUserData = async () => { // this user will be replaced once OAuth has been implemented
-    try {
-      let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${this.props.auth0.user.email}`);
-      this.setState({ user: userFromDB.data }, () => {
-        setTimeout(() => {
-          this.setState({isLoading: false});
-        }, 1000); // <------- adjust this to adjust spinner time
-      });
-    } catch (err) {
-      console.log(err);
+    try{
+    const res = await this.props.auth0.getIdTokenClaims();
+    // put token in variable
+    const jwt = res.__raw;
+    const config = {
+      method: 'get',
+      // change back to process.env
+      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      url: `/user?email=${this.props.auth0.user.email}`,
+      headers: {
+        "Authorization": `Bearer ${jwt}`
+      }
     }
+
+    const userFromDB = await axios(config);
+    this.setState({ user: userFromDB.data }, () => {
+      setTimeout(() => {
+        this.setState({isLoading: false});
+      }, 750); // <------- adjust this to adjust spinner time
+    });
+  } catch (err) {
+    console.log(err);
+  };
   }
+
   
   // called in WelcomeForm.js
   createUser = async (user) => {
@@ -79,6 +93,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <>
         {!(this.props.auth0.isAuthenticated ||  this.props.auth0.isLoading) ?
@@ -95,7 +110,7 @@ class App extends Component {
               <Router>
                 <Header />
                 <Routes>
-                  <Route path="/" element={<Dashboard user={this.state.user}/>} />
+                  <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user}/>} />
                   <Route path="/myEvents" element={<MyEvents />} />
                   <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} />} />
                   <Route path="/about" element={<About />} />

@@ -1,4 +1,3 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
@@ -19,11 +18,9 @@ class EditProfileModal extends Component {
       }
     });
     const user = {
-      // this.props.auth0.user.name || 
       name: this.props.user.name,
       defaultCity: e.target.city.value.toLowerCase() || this.props.user.defaultCity,
       defaultInterests: interestArray,
-      // this.props.auth0.user.email ||
       email: this.props.user.email,
     }
     this.props.updateUser(user, this.props.user._id);
