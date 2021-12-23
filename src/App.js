@@ -159,7 +159,7 @@ class App extends Component {
                 <Header />
                   <Routes>
                       <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} saveEvent={this.saveEvent} />} />
-                      <Route path="/myEvents" element={<MyEvents />} />
+                      <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} />} />
                       <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
                       <Route path="/about" element={<About />} /> 
                   </Routes>

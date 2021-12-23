@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 
@@ -10,7 +9,11 @@ class MyEvents extends Component {
     return (
       <div>
         <h1>MyEvents</h1>
-        <EventCard type="myEvent"/>
+        {this.props.user.savedEvents.length > 0 && this.props.user.savedEvents.map((event, idx) => {
+          console.log(event)
+          return <EventCard type="myEvent" event={event} key={event.id + idx} />
+        })}
+        <EventCard type="myEvent" event />
       </div>
     );
   }
