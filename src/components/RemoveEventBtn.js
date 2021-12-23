@@ -7,7 +7,7 @@ class RemoveEventBtn extends Component {
 render() {
   return (
     <div>
-        {/* // <Button onClick={}>Log In</Button> */}
+        {/* <Button onClick={}>Log In</Button> */}
       </div>
     );
   }

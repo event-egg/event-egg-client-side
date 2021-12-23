@@ -5,8 +5,6 @@ import RemoveEventBtn from './RemoveEventBtn';
 
 
 
-
-
 class EventCard extends Component {
   render() {
     return (

@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import LoginBtn from './LoginBtn';
+import { useAuth0 } from '@auth0/auth0-react';
 
+function LoginButton(props) {
+  const { loginWithRedirect } = useAuth0();
+  return <Button variant="outline-info" onClick={() => {
+    loginWithRedirect(); 
+  }}>Log In</ Button>
+};
 
 class Login extends Component {
-  handleClick = (e) => {
-    e.preventDefault();
-    this.props.getUserData(e.target.email.value);
-  }
   render() {
     return (
       <div>
         <h1>Event Egg</h1>
-        <Form onSubmit={this.handleClick}>
-          <Form.Group className="mb-3" controlId="email" >
-            <Form.Label>email</Form.Label>
-            <Form.Control type="text" placeholder="email" />
-          </Form.Group>
-          <Button variant="outline-info" type="submit">Login</Button>
-        </Form>
+          <LoginButton />
       </div>
     );
   }

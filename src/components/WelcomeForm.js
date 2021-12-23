@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 // import WelcomeSubmitBtn from './WelcomeSubmitBtn';
 import Col from 'react-bootstrap/Col';
 // import Row from 'react-bootstrap/Row';
+import { withAuth0 } from '@auth0/auth0-react';
 
 
 // Basic outline of form
@@ -20,22 +21,22 @@ class WelcomeForm extends Component {
         }
       });
       const user = {
-        // name: this.props.auth0.user.name,
+        name: this.props.auth0.user.name,
         defaultCity: e.target.city.value.toLowerCase(),
         defaultInterests: interestArray,
-        email: 'fakeemail@email.com'
-        // email: this.props.auth0.user.email
+        // email: 'fakeemail@email.com'
+        email: this.props.auth0.user.email
       }
       this.props.createUser(user);
 
     } else if (e.nativeEvent.submitter.name === 'skip') {
       let interestArray = [];
       const user = {
-        // name: this.props.auth0.user.name,
+        name: this.props.auth0.user.name,
         defaultCity: e.target.city.value.toLowerCase(),
         defaultInterests: interestArray,
-        email: 'fakeemail@email.com'
-        // email: this.props.auth0.user.email
+        // email: 'fakeemail@email.com'
+        email: this.props.auth0.user.email
       }
       this.props.createUser(user);
     }
@@ -103,4 +104,4 @@ class WelcomeForm extends Component {
 }
 
 
-export default WelcomeForm;
+export default withAuth0(WelcomeForm);

@@ -9,11 +9,12 @@ import MyEvents from './components/MyEvents';
 import Profile from './components/Profile';
 import About from './components/About';
 import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner'
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
-
+import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {
 
@@ -33,59 +34,125 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
-      isAuthenticated: false
+      isLoading: true
     }
     //call get userdata here here -for Daniel
   }
 
   //make handleGetUser function here -for Daniel 
-  getUserData = async (email) => { // this user will be replaced once OAuth has been implemented
-    try {
-      let userFromDB = await axios.get(`${process.env.REACT_APP_DB_URL}/user?email=${email}`);
-      this.setState({ user: userFromDB.data, isAuthenticated: true });
-    } catch (err) {
-      console.log(err);
+  getUserData = async () => { // this user will be replaced once OAuth has been implemented
+    try{
+    const res = await this.props.auth0.getIdTokenClaims();
+    // put token in variable
+    const jwt = res.__raw;
+    const config = {
+      method: 'get',
+      // change back to process.env
+      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      url: `/user?email=${this.props.auth0.user.email}`,
+      headers: {
+        "Authorization": `Bearer ${jwt}`
+      }
     }
+
+    const userFromDB = await axios(config);
+    this.setState({ user: userFromDB.data }, () => {
+      setTimeout(() => {
+        this.setState({isLoading: false});
+      }, 500); // <------- adjust this to adjust spinner time
+    });
+  } catch (err) {
+    console.log(err);
+  };
   }
 
-  // componentDidMount() {
-  //   this.getUserData();
-  // }
+  
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
-      let newUser = await axios.post(`${process.env.REACT_APP_DB_URL}/user`, user);
-      this.setState({ user: newUser.data });
-    } catch (err) {
-      console.log(err);
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+      method: 'post',
+      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      url: `/user`,
+      data: user,
+      headers: { "Authorization": `Bearer ${jwt}` }
+      }
+        const updatedUser = await axios(config);
+        this.setState({ user: updatedUser.data });
+      } catch (e) {
+        console.error(e);
+      }
     }
-  }
 
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
-      let updatedUser = await axios.patch(`${process.env.REACT_APP_DB_URL}/user/${id}`, user);
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        method: 'patch',
+        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        url: `/user/${id}`,
+        data: user,
+        headers: { "Authorization": `Bearer ${jwt}` }
+      }
+      const updatedUser = await axios(config);
       this.setState({ user: updatedUser.data });
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      console.error(e);
     }
   }
 
+  deleteUser = async (user, id) => {
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+
+      const jwt = res.__raw;
+      const config = {
+        method: 'delete',
+        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        url: `/user/${user._id}`,
+        headers: { "Authorization": `Bearer ${jwt}` }
+      }
+      await axios(config);
+      this.setState({ user: {}})
+      
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+
+
+
+  componentDidMount() {
+    const { getAccessTokenSilently } = this.props.auth0; 
+    getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
+  }
+
   render() {
+    
     return (
       <>
-        {this.state.isAuthenticated === false ?
-          <Login getUserData={this.getUserData} /> :
+        {!(this.props.auth0.isAuthenticated ||  this.props.auth0.isLoading) ?
+          <Login /> :
           <>
-            { /* if user data doesnt exist,  render welcome page, else router */}
-            {Object.keys(this.state.user).length === 0 ?
+            {
+              this.state.isLoading  || this.props.auth0.isLoading ?
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+              : 
+              Object.keys(this.state.user).length === 0 ?
               <Welcome createUser={this.createUser} /> :
               <Router>
                 <Header />
                 <Routes>
-                  <Route path="/" element={<Dashboard user={this.state.user}/>} />
+                  <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user}/>} />
                   <Route path="/myEvents" element={<MyEvents />} />
-                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} />} />
+                  <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser}/>} />
                   <Route path="/about" element={<About />} />
                 </Routes>
                 <Footer />
@@ -98,4 +165,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuth0(App);

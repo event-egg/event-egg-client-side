@@ -1,4 +1,3 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form';
@@ -19,20 +18,19 @@ class EditProfileModal extends Component {
       }
     });
     const user = {
-      // this.props.auth0.user.name || 
       name: this.props.user.name,
       defaultCity: e.target.city.value.toLowerCase() || this.props.user.defaultCity,
       defaultInterests: interestArray,
-      // this.props.auth0.user.email ||
       email: this.props.user.email,
     }
     this.props.updateUser(user, this.props.user._id);
+    this.props.closeModal('profile');
   }
 
   render() {
     return (
       <div>
-        <Modal show={this.props.show} onHide={this.props.closeModal}>
+        <Modal className="pt-5" show={this.props.show} onHide={() => this.props.closeModal('profile')}>
           <Modal.Header>
             <Modal.Title>Edit Profile</Modal.Title>
           </Modal.Header>
@@ -92,16 +90,13 @@ class EditProfileModal extends Component {
               </Col>
             </Form.Group>
           </fieldset>
-          <Button type='submit'>Update</Button>
+          <div className="d-flex flex-row-reverse bd-highlight">
+          <Button className="mx-1" variant="secondary" onClick={() => this.props.closeModal('profile')}>Close</Button>
+          <Button className="mx-1" type='submit'>Update</Button>
+          </ div>
         </Form>
             
           </Modal.Body>
-          <Modal.Footer>
-            {/* <UpdateProfileBtn variant="primary" closeModal={this.props.closeModal} /> */}
-            <Button variant="secondary" onClick={this.props.closeModal}>
-              Close
-            </Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
