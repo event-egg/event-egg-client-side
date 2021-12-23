@@ -13,7 +13,7 @@ class AboutCard extends Component {
           <Card.Img variant="top" src="holder.js/100px180" />
           <Card.Body>
             <Card.Text>
-              <p>Bio goes here</p>
+              Bio goes here
               {/* <a href="#">LinkedIn link </a> */}
             </Card.Text>
           </Card.Body>
