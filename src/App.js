@@ -36,25 +36,20 @@ class App extends Component {
       user: {},
       isLoading: true
     }
-    //call get userdata here here -for Daniel
   }
 
-  //make handleGetUser function here -for Daniel 
-  getUserData = async () => { // this user will be replaced once OAuth has been implemented
+  getUserData = async () => {
     try{
     const res = await this.props.auth0.getIdTokenClaims();
-    // put token in variable
     const jwt = res.__raw;
     const config = {
       method: 'get',
-      // change back to process.env
       baseURL: `${process.env.REACT_APP_DB_URL}`,
       url: `/user?email=${this.props.auth0.user.email}`,
       headers: {
         "Authorization": `Bearer ${jwt}`
       }
     }
-
     const userFromDB = await axios(config);
     this.setState({ user: userFromDB.data }, () => {
       setTimeout(() => {
@@ -108,7 +103,6 @@ class App extends Component {
   deleteUser = async (user, id) => {
     try {
       const res = await this.props.auth0.getIdTokenClaims();
-
       const jwt = res.__raw;
       const config = {
         method: 'delete',
@@ -117,15 +111,11 @@ class App extends Component {
         headers: { "Authorization": `Bearer ${jwt}` }
       }
       await axios(config);
-      this.setState({ user: {}})
-      
+      this.setState({ user: {}})    
     } catch (e) {
       console.error(e);
     }
   }
-
-
-
 
   componentDidMount() {
     const { getAccessTokenSilently } = this.props.auth0; 
