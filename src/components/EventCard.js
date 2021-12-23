@@ -16,7 +16,7 @@ class EventCard extends Component {
             {this.props.event.description === "Undefined" ? "" : this.props.event.description}
           </Card.Text>
           {/* conditially render button based on where the event card is being rendered */}
-          {this.props.type === 'newEvent' ? <SaveEventBtn /> : <RemoveEventBtn />}
+          {this.props.type === 'newEvent' ? <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} /> : <RemoveEventBtn />}
         </Card.Body>
       </Card>
     );

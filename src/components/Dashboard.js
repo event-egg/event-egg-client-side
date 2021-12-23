@@ -46,10 +46,8 @@ class Dashboard extends Component {
         <h1>{this.props.user.defaultCity}</h1> 
         { this.state.events.length > 0   &&
         <Row sm={1} md={2} lg={5}>
-          {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} />)}
-        </Row>}
-        
-        
+            {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} />)}
+          </Row>}   
       </div>
     );
   }
