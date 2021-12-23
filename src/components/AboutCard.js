@@ -12,9 +12,9 @@ class AboutCard extends Component {
           <Card.Img variant="top" src={this.props.bio.image} />
           <Card.Body>
             <Card.Text>
-              {this.props.bio.about}
-              <a href={this.props.bio.githubLink}>GitHub</a><br />
-              <a href={this.props.bio.linkedinLink}>LinkedIn</a>
+              {this.props.bio.about}<br />
+              <a href={this.props.bio.githubLink} target="_blank" rel="noreferrer">GitHub</a><br />
+              <a href={this.props.bio.linkedinLink} target="_blank" rel="noreferrer">LinkedIn</a>
             </Card.Text>
           </Card.Body>
         </Card>

@@ -9,7 +9,7 @@ class About extends Component {
   render() {
     return (
       <div>
-        <h1>About</h1>
+        <h1>About Us</h1>
         {aboutUsArray.length > 0 && aboutUsArray.map((bio, idx) => <AboutCard bio={bio} key={idx} />)}
       </div>
     );
