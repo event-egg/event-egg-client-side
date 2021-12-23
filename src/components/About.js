@@ -1,6 +1,7 @@
 // import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import AboutCard from './AboutCard';
+import aboutUsArray from '../AboutUsData';
 
 
 
@@ -9,7 +10,7 @@ class About extends Component {
     return (
       <div>
         <h1>About</h1>
-        <AboutCard />
+        {aboutUsArray.length > 0 && aboutUsArray.map((bio, idx) => <AboutCard bio={bio} key={idx} />)}
       </div>
     );
   }
