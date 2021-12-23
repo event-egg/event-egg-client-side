@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
-import Button from 'react-bootstrap/Button'
-
-//test
+import Row from 'react-bootstrap/Row'
 import axios from 'axios';
-import { withAuth0 } from '@auth0/auth0-react';
+
 
 
 class Dashboard extends Component {
 
+  componentDidMount = () => {
+    this.getEvents();
+  }
+
+
   constructor(props){
     super(props);
     this.state = {
-      testResponse: ""
+      events: ""
     }
   }
 
 
-  handleTest = async () => {
-    console.log("Get Books");
+  getEvents = async (keyword) => {
+    console.log("Get Events");
     const res = await this.props.auth0.getIdTokenClaims();
     // put token in variable
     const jwt = res.__raw;
@@ -26,14 +29,14 @@ class Dashboard extends Component {
       method: 'get',
       // change back to process.env
       baseURL: 'http://localhost:3001',
-      url: '/test',
+      url: `/events?keyword=basketball`,
       headers: {
         "Authorization": `Bearer ${jwt}`
       }
     }
-    const response = await axios(config);
-    console.log(response.data);
-    this.setState({ testResponse: response.data });
+    const eventsResponse = await axios(config);
+    console.log('eventsResponse.data: ', eventsResponse.data);
+    this.setState({ events: eventsResponse.data });
   }
 
 
@@ -41,10 +44,11 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>{this.props.user.defaultCity}</h1> 
-        <h2>{this.state.testResponse}</h2>
-        <Button onClick={this.handleTest}>Test Route</Button>
-        {/* //Test to see if user has data in it -K -S */}
-        <EventCard type="newEvent"/>
+        { this.state.events.length > 0   &&
+        <Row sm={1} md={2} lg={5}>
+          {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} />)}
+        </Row>}
+        
         
       </div>
     );
