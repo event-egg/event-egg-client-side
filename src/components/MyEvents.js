@@ -13,7 +13,6 @@ class MyEvents extends Component {
           console.log(event)
           return <EventCard type="myEvent" event={event} key={event.id + idx} />
         })}
-        <EventCard type="myEvent" event />
       </div>
     );
   }

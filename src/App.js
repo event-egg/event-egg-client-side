@@ -44,7 +44,7 @@ class App extends Component {
     const jwt = res.__raw;
     const config = {
       method: 'get',
-      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
       url: `/user?email=${this.props.auth0.user.email}`,
       headers: {
         "Authorization": `Bearer ${jwt}`
@@ -69,7 +69,7 @@ class App extends Component {
       const jwt = res.__raw;
       const config = {
       method: 'post',
-      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
       url: `/user`,
       data: user,
       headers: { "Authorization": `Bearer ${jwt}` }
@@ -88,7 +88,7 @@ class App extends Component {
       const jwt = res.__raw;
       const config = {
         method: 'patch',
-        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
         url: `/user/${id}`,
         data: user,
         headers: { "Authorization": `Bearer ${jwt}` }
@@ -106,7 +106,7 @@ class App extends Component {
       const jwt = res.__raw;
       const config = {
         method: 'delete',
-        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
         url: `/user/${user._id}`,
         headers: { "Authorization": `Bearer ${jwt}` }
       }
@@ -123,7 +123,7 @@ class App extends Component {
       const jwt = res.__raw;
       const config = {
         method: 'post',
-        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
         url: `/events/${user._id}`,
         data: event,
         headers: { "Authorization": `Bearer ${jwt}` }
