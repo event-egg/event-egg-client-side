@@ -37,7 +37,7 @@ class Profile extends Component {
         <h3> Some Profile Data </h3>
         <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser}/>
         <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
-        <Button onClick={() => this.showModal()} >Edit Profile</Button>
+        <Button onClick={() => this.showModal('profile')} >Edit Profile</Button>
         <Button  variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
       </div>
     );
