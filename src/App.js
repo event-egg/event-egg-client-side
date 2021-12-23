@@ -79,10 +79,9 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <>
-        {!(this.props.auth0.isAuthenticated) ?
+        {!(this.props.auth0.isAuthenticated ||  this.props.auth0.isLoading) ?
           <Login /> :
           <>
             {
