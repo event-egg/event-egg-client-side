@@ -59,7 +59,7 @@ class App extends Component {
     this.setState({ user: userFromDB.data }, () => {
       setTimeout(() => {
         this.setState({isLoading: false});
-      }, 750); // <------- adjust this to adjust spinner time
+      }, 500); // <------- adjust this to adjust spinner time
     });
   } catch (err) {
     console.log(err);
@@ -80,12 +80,26 @@ class App extends Component {
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
     try {
-      let updatedUser = await axios.patch(`${process.env.REACT_APP_DB_URL}/user/${id}`, user);
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        method: 'patch',
+        baseURL: `${process.env.REACT_APP_DB_URL}`,
+        url: `/user/${id}`,
+        data: user,
+        headers: { "Authorization": `Bearer ${jwt}` }
+      }
+      const updatedUser = await axios(config);
       this.setState({ user: updatedUser.data });
-    } catch (err) {
-      console.log(err)
+    } catch (e) {
+      console.error(e);
     }
   }
+
+
+
+
+
 
   componentDidMount() {
     const { getAccessTokenSilently } = this.props.auth0; 
