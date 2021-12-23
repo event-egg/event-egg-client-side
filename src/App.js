@@ -70,12 +70,21 @@ class App extends Component {
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
-      let newUser = await axios.post(`${process.env.REACT_APP_DB_URL}/user`, user);
-      this.setState({ user: newUser.data });
-    } catch (err) {
-      console.log(err);
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+      method: 'post',
+      baseURL: `${process.env.REACT_APP_DB_URL}`,
+      url: `/user`,
+      data: user,
+      headers: { "Authorization": `Bearer ${jwt}` }
+      }
+        const updatedUser = await axios(config);
+        this.setState({ user: updatedUser.data });
+      } catch (e) {
+        console.error(e);
+      }
     }
-  }
 
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
