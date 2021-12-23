@@ -1,6 +1,7 @@
 // import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
+import aboutUs from './about'
 
 
 
@@ -14,7 +15,6 @@ class AboutCard extends Component {
           <Card.Body>
             <Card.Text>
               Bio goes here
-              {/* <a href="#">LinkedIn link </a> */}
             </Card.Text>
           </Card.Body>
         </Card>

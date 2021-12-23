@@ -13,7 +13,7 @@ class MyEvents extends Component {
         {this.props.user.savedEvents.length > 0 && 
         <Row sm={1} md={2} lg={5}>
         {this.props.user.savedEvents.map((event, idx) =>
-          <EventCard type="myEvent" event={event} key={event.id + idx} />
+          <EventCard type="myEvent" event={event} key={event.id + idx} deleteEvent={this.props.deleteEvent} user={this.props.user}/>
         )}</Row>}
       </div>
     );
