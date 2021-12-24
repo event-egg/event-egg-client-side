@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -7,10 +8,15 @@ class SearchForm extends Component {
   render() {
     return (
       <div>
-        <Form>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicCity" >
+            <Form.Label>Event Category</Form.Label>
+            <Form.Control type="text" placeholder='"sportsball"' />
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="date" />
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder="city" />
+            <Form.Control type="text" placeholder={this.props.user.defaultCity} />
+            <Button type="submit">Let's get crackin'!</Button>
           </Form.Group>
         </Form>
       </div>
@@ -18,4 +24,12 @@ class SearchForm extends Component {
   }
 }
 
+
+  {/* <Form onSubmit={this.handleSubmit}>
+          <Form.Group className="mb-3" controlId="exampleForm">
+            <Form.Label>Example textarea</Form.Label>
+            <Form.Control as="textarea" rows={3} />
+          </Form.Group>
+          <Button type='submit' name='submit' >Submit</Button> 
+        </Form>*/}
 export default SearchForm;
