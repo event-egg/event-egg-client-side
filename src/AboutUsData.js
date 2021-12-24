@@ -11,7 +11,7 @@ const aboutUsArray = [
     image: "./img/spencer.png",
     about: "about spencer",
     githubLink: "https://www.github.com/SpencerTower",
-    linkedinLink: "https://www.linkedin.com/spencertower"
+    linkedinLink: "https://www.linkedin.com/in/spencertower"
   },
   {
     name: "Andrew Enyeart",
