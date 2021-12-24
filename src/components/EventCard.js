@@ -15,8 +15,8 @@ class EventCard extends Component {
     }
   }
 
-  changeToMyEvent = () => {
-    this.setState({ type: 'myEvent' });
+  changeToMyEvent = (type) => {
+    this.setState({ type: type });
   }
 
   render() {
@@ -28,9 +28,12 @@ class EventCard extends Component {
           <Card.Text>
             {this.props.event.description === "Undefined" ? "" : this.props.event.description}
           </Card.Text>
-        </Card.Body>
         {/* conditially render button based on where the event card is being rendered */}
-        {this.props.type === 'newEvent' ? <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} changeToMyEvent={this.changeToMyEvent} /> : <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} />}
+        {this.state.type === 'newEvent' ? 
+          <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} changeToMyEvent={this.changeToMyEvent} /> :
+          <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} changeToMyEvent={this.changeToMyEvent} />
+        }
+        </Card.Body>
       </Card>
     );
   }

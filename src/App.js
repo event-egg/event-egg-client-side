@@ -18,18 +18,6 @@ import { withAuth0 } from '@auth0/auth0-react';
 
 class App extends Component {
 
-  //   We are currently using the tempVars object to act as the state of our app
-  //   Changing tempVars.isAuthenticated to false will show the log in screen, true will show the rest of the app -->
-  //   Changing tempVars.userData to an empty object will show you the welcome screen, adding data to the object will show you the rest of the app
-  // user: {
-  //   "name": "Andrew",
-  //   "defaultCity": "Seattle",
-  //   "defaultInterests": ["cats", "drinks", "facial hair", "movies", "coffee", "theatre"],
-  //   "savedEvents": [],
-  //   "email": "and.rw@this.com"
-  // }
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -118,6 +106,7 @@ class App extends Component {
   }
 
   saveEvent = async (user, event) => {
+    console.log("User in save Event:", user);
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -129,7 +118,7 @@ class App extends Component {
         headers: { "Authorization": `Bearer ${jwt}` }
       }
       const userUpdatedWithEvents = await axios(config);
-      this.setState({ user: userUpdatedWithEvents.data })
+      this.setState({user: userUpdatedWithEvents.data});
     } catch (e) {
       console.error(e);
     }
@@ -137,21 +126,21 @@ class App extends Component {
 
   deleteEvent = async (user, event) => {
     console.log("User in deleteEvent:", user);
-    // try {
-    //   const res = await this.props.auth0.getIdTokenClaims();
-    //   const jwt = res.__raw;
-    //   const config = {
-    //     method: 'delete',
-    //     baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-    //     url: `/events/${user._id}`,
-    //     data: event,
-    //     headers: {"Authorization": `Bearer ${jwt}`}
-    //   }
-    //   const userUpdatedRemovedEvent = await axios(config);
-    //   this.setState({user: userUpdatedRemovedEvent.data})
-    // } catch (e) {
-    //   console.error(e);
-    // }
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        method: 'delete',
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+        url: `/events/${user._id}`,
+        data: event,
+        headers: {"Authorization": `Bearer ${jwt}`}
+      }
+      const userUpdatedRemovedEvent = await axios(config);
+      this.setState({user: userUpdatedRemovedEvent.data}, () => console.log("delete Event callback"))
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   componentDidMount() {

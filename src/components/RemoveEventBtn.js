@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 class RemoveEventBtn extends Component {
 
   handleRemoveClick = () => {
-    console.log('Remove Button clicked');
-    // this.props.deleteEvent(this.props.user, this.props.event);
+    this.props.deleteEvent(this.props.user, this.props.event);
+    this.props.changeToMyEvent('newEvent');
+    console.log("handle remove")
   }
 
   render() {

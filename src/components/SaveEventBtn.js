@@ -3,9 +3,10 @@ import Button from 'react-bootstrap/Button';
 
 
 class SaveEventBtn extends Component {
-  handleClick = async () => {
-    await this.props.saveEvent(this.props.user, this.props.event);
-    this.props.changeToMyEvent();
+
+  handleClick = () => {
+    this.props.changeToMyEvent('myEvent');
+    this.props.saveEvent(this.props.user, this.props.event);
   }
 
   render() {
