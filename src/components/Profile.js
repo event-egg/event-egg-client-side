@@ -38,32 +38,35 @@ class Profile extends Component {
 
   render() {
     return (
-      <Card>
-        <Container>
-          <Card.Body>
-            <Card.Title>Your Profile</Card.Title>
-            <Card.Header>{this.props.user.name}</Card.Header>
-            <ListGroup variant="flush">
-              <ListGroupItem>Email: {this.props.user.email}</ListGroupItem>
-              <ListGroupItem>Location: {this.props.user.defaultCity}</ListGroupItem>
-              <ListGroupItem>Interests: <br />
-                {
-                  this.props.user.defaultInterests.map(interest =>
-                    <Badge pill bg="success" key={interest}>{interest}</Badge>)
-                }
-              </ListGroupItem>
-            </ListGroup>
-          </Card.Body>
-          <Stack direction="horizontal" xs={2} gap={4}>
-            <Button size="lg" variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
-            <Button size="lg" variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
-          </Stack>
-
-          <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
-          <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
-
-        </Container>
-      </Card>
+      <Container>
+        <Card style={{ maxWidth: '500px' }}>
+          <Container>
+            <Card.Body>
+              <Card.Title>Your Profile</Card.Title>
+              <Card.Header>{this.props.user.name}</Card.Header>
+              <ListGroup variant="flush">
+                <ListGroupItem>Email: {this.props.user.email}</ListGroupItem>
+                <ListGroupItem>Location: {this.props.user.defaultCity}</ListGroupItem>
+                <ListGroupItem>Interests: <br />
+                  {
+                    this.props.user.defaultInterests.map(interest =>
+                      <Badge pill bg="success" key={interest}>{interest}</Badge>)
+                  }
+                </ListGroupItem>
+              </ListGroup>
+            
+            <Container>
+              <Stack direction="horizontal" xs={2} gap={4}>
+                <Button size="lg" variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
+                <Button size="lg" variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+              </Stack>
+            </Container>
+            </Card.Body>
+            <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
+            <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
+          </Container>
+        </Card>
+      </Container>
     );
   }
 }
