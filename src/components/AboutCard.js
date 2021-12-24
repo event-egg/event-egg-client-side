@@ -1,4 +1,3 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 
@@ -9,11 +8,13 @@ class AboutCard extends Component {
     return (
       <div>
         <Card style={{ width: '18rem' }}>
-          <Card.Header>Team Member Name</Card.Header>
-          <Card.Img variant="top" src="holder.js/100px180" />
+          <Card.Header>{this.props.bio.name}</Card.Header>
+          <Card.Img variant="top" src={this.props.bio.image} />
           <Card.Body>
             <Card.Text>
-              Bio goes here
+              {this.props.bio.about}<br />
+              <a href={this.props.bio.githubLink} target="_blank" rel="noreferrer">GitHub</a><br />
+              <a href={this.props.bio.linkedinLink} target="_blank" rel="noreferrer">LinkedIn</a>
             </Card.Text>
           </Card.Body>
         </Card>
