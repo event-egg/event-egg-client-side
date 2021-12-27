@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 import axios from 'axios';
 import Search from './Search';
 
 
 
 class Dashboard extends Component {
-
+  
   componentDidMount = () => {
     this.getEvents('seattle');
   }
-
-
   constructor(props){
     super(props);
     this.state = {
@@ -23,9 +19,10 @@ class Dashboard extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(e.target.exampleForm.value)
-    this.getEvents(e.target.exampleForm.value)
+    e.preventDefault();
+    console.log('form submission', e.target);
+    console.log(e.target.exampleForm.value);
+    this.getEvents(e.target.exampleForm.value);
   }
 
 
@@ -53,7 +50,7 @@ class Dashboard extends Component {
     return (
       <div>
         <h1>{this.props.user.defaultCity}</h1> 
-        <Search handleSubmit={this.handleSubmit}/>
+        <Search user={this.props.user} handleSubmit={this.handleSubmit}/>
       
         { this.state.events.length > 0   &&
         <Row sm={1} md={2} lg={5}>

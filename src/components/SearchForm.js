@@ -15,8 +15,8 @@ class SearchForm extends Component {
             <Form.Label>Date</Form.Label>
             <Form.Control type="date" />
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder={this.props.user.defaultCity} />
-            <Button type="submit">Let's get crackin'!</Button>
+            <Form.Control type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
+            <Button type="submit" name='submit'>Let's get crackin'!</Button>
           </Form.Group>
         </Form>
       </div>
@@ -24,12 +24,4 @@ class SearchForm extends Component {
   }
 }
 
-
-  {/* <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="exampleForm">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-          </Form.Group>
-          <Button type='submit' name='submit' >Submit</Button> 
-        </Form>*/}
 export default SearchForm;
