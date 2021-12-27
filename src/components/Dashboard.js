@@ -30,7 +30,6 @@ class Dashboard extends Component {
 
   setSearchState = (searchInput) => {
     console.log('form submission', searchInput); 
-    // console.log(e.target.exampleForm.value);
     this.setState({ searchInput }, () => this.getEvents(this.state.searchInput));
   }
 
@@ -38,14 +37,15 @@ class Dashboard extends Component {
   getEvents = async (searchObject) => {
     console.log("Get Events:", searchObject);
     console.log(searchObject.city);
+    console.log('whole search obj', searchObject);
     const res = await this.props.auth0.getIdTokenClaims();
     // put token in variable
     const jwt = res.__raw;
     const config = {
-      method: 'get',
+      method: 'post',
       // change back to process.env
       baseURL: 'http://localhost:3001',
-      url: `/events?keyword=${searchObject.interests} ${searchObject.city}`,
+      url: `/events`,
       data: searchObject,
       headers: {
         "Authorization": `Bearer ${jwt}`
