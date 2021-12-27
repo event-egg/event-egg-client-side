@@ -3,7 +3,7 @@ import EventCard from './EventCard';
 import Search from './Search';
 import Row from 'react-bootstrap/Row'
 import axios from 'axios';
-import cache from './Cache.js';
+import cache from '../cache.js';
 
 class Dashboard extends Component {
 
@@ -14,22 +14,23 @@ class Dashboard extends Component {
       searchInput: {}
     }
   }
-  // TODO to reset back to default params, create button to clear cache (cache = {})
+  // TODO: to reset back to default params, create button to clear cache (cache = {})
   componentDidMount = () => {
-    if (Object.keys(cache).length === 0) {
+    if (cache.searchInput === undefined || cache.searchInput === null) {
       const defaultObject = {
         city: this.props.user.defaultCity
         // interests: this.props.user.defaultInterests,
         // date: Date() // need to format according to search requirements; Date().split(' ').splice(1, 3).join(' ');
       }
       this.setState({ searchInput: defaultObject }, () => this.getEvents(this.state.searchInput))
-    } else this.getEvents(cache); // gets previous searchObject from cache
+    } else {
+      this.getEvents(cache.searchInput)
+    } // gets previous searchObject from cache
   }
 
-  setSearchState = (searchInput) => { // alternative solution is add second parameter isNewSearch (Boolean)
-    cache = searchInput;
-    console.log('form submission', searchInput);
-    // console.log(e.target.exampleForm.value);
+  setSearchState = (searchInput) => {
+    cache.searchInput = searchInput;
+    console.log('setCurrentState cache', cache.searchInput);
     this.setState({ searchInput: searchInput}, () => this.getEvents(this.state.searchInput));
   }
 
@@ -40,7 +41,6 @@ class Dashboard extends Component {
     const jwt = res.__raw;
     const config = {
       method: 'post',
-      // change back to process.env
       baseURL: 'http://localhost:3001',
       url: `/events`,
       data: searchObject,

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
-
 class SearchForm extends Component {
   constructor(props) {
     super(props)
@@ -14,9 +12,8 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('e.target.city.value', e.target.city.value);
     const searchObject = {
-      city: e.target.city.value || 'Boston', // this.props.user.defaultCity
+      city: e.target.city.value || this.props.user.defaultCity
       // interests: e.target.interests.value || this.props.user.defaultInterests
     }
     console.log('handleSubmit', searchObject);
