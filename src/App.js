@@ -22,6 +22,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
+      searchInput: "",
       isLoading: true
     }
   }
@@ -164,9 +165,9 @@ class App extends Component {
               Object.keys(this.state.user).length === 0 ?
               <Welcome createUser={this.createUser} /> :
               <Router>
-                <Header />
+                    <Header setSearch={this.setSearch} />
                   <Routes>
-                      <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />} />
+                      <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} searchInput={this.state.searchInput} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />} />
                       <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} deleteEvent={this.deleteEvent} />} />
                       <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
                       <Route path="/about" element={<About />} /> 

@@ -35,7 +35,6 @@ class WelcomeForm extends Component {
         name: this.props.auth0.user.name,
         defaultCity: e.target.city.value.toLowerCase(),
         defaultInterests: interestArray,
-        // email: 'fakeemail@email.com'
         email: this.props.auth0.user.email
       }
       this.props.createUser(user);

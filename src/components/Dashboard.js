@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
+import Search from './Search';
 import Row from 'react-bootstrap/Row'
 import axios from 'axios';
 
@@ -15,10 +16,15 @@ class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state = {
-      events: ""
+      events: "",
+      searchInput: ""
     }
   }
 
+  setSearch = (searchInput) => {
+    this.setState({ searchInput: searchInput.toLowerCase() });
+    this.getEvents();
+  }
 
   getEvents = async (keyword) => {
     console.log("Get Events");
@@ -29,7 +35,7 @@ class Dashboard extends Component {
       method: 'get',
       // change back to process.env
       baseURL: 'http://localhost:3001',
-      url: `/events?keyword=basketball`,
+      url: `/events?keyword=basketball&city=${this.state.searchInput}`,
       headers: {
         "Authorization": `Bearer ${jwt}`
       }
@@ -39,11 +45,11 @@ class Dashboard extends Component {
     this.setState({ events: eventsResponse.data });
   }
 
-
   render() {
     return (
       <div>
         <h1>{this.props.user.defaultCity}</h1> 
+        <Search setSearch={this.setSearch} />
         { this.state.events.length > 0   &&
         <Row sm={1} md={2} lg={5}>
             {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} />)}

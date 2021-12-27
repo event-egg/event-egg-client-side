@@ -9,11 +9,11 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="1">
           <Accordion.Item eventKey="0">
             <Accordion.Header>Search</Accordion.Header>
             <Accordion.Body>
-              <SearchForm /> <SearchSubmitBtn />
+              <SearchForm setSearch={this.props.setSearch} />
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

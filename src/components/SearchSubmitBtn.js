@@ -3,10 +3,14 @@ import Button from 'react-bootstrap/Button';
 
 
 class SearchBtn extends Component {
+  // onCLick = (e) => {
+  //   this.props.
+  // }
+
   render() {
     return (
       <div>
-        <Button>Search</Button>
+        <Button onClick={this.onClick}>Search</Button>
       </div>
     );
   }
