@@ -14,11 +14,12 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.city.value);
+    console.log('e.target.city.value', e.target.city.value);
     const searchObject = {
-      city: e.target.city.value || this.props.user.defaultCity,
-      interests: e.target.interests.value || this.props.user.defaultInterests
+      city: e.target.city.value || 'Boston', // this.props.user.defaultCity
+      // interests: e.target.interests.value || this.props.user.defaultInterests
     }
+    console.log('handleSubmit', searchObject);
     this.props.setSearchState(searchObject);
   }
 
