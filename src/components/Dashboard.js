@@ -10,7 +10,7 @@ import axios from 'axios';
 class Dashboard extends Component {
 
   componentDidMount = () => {
-    this.getEvents('seattle');
+    this.getEvents('seattle'); //<------------------------ Hardcoded for test, this is where preferences might go
   }
 
 
@@ -24,11 +24,11 @@ class Dashboard extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(e.target.exampleForm.value)
-    this.getEvents(e.target.exampleForm.value)
+    this.getEvents(e.target.exampleForm.value, e.target.exampleFormLocation.value)
   }
 
 
-  getEvents = async (keyword) => {
+  getEvents = async (keyword, location) => {
     console.log("Get Events:", keyword);
     const res = await this.props.auth0.getIdTokenClaims();
     // put token in variable
@@ -37,7 +37,7 @@ class Dashboard extends Component {
       method: 'get',
       // change back to process.env
       baseURL: 'http://localhost:3001',
-      url: `/events?keyword=${keyword}`,
+      url: `/events?keyword=${keyword} ${location}`,
       headers: {
         "Authorization": `Bearer ${jwt}`
       }
@@ -54,8 +54,12 @@ class Dashboard extends Component {
         <h1>{this.props.user.defaultCity}</h1> 
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows={3} />
+            <Form.Label>Example Keyword</Form.Label>
+            <Form.Control as="input" rows={3} />
+          </Form.Group>          
+          <Form.Group className="mb-3" controlId="exampleFormLocation">
+            <Form.Label>Example location</Form.Label>
+            <Form.Control as="input" rows={3} />
           </Form.Group>
           <Button type='submit' name='submit' >Submit</Button>
         </Form>
