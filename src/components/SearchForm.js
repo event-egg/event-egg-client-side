@@ -20,10 +20,15 @@ class SearchForm extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group className="mb-3" controlId="city" >
+        <Form onSubmit={this.props.handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicCity" >
+            <Form.Label>Event Category</Form.Label>
+            <Form.Control type="text" placeholder='"sportsball"' />
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="date" />
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder="city" />
+            <Form.Control type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
+            <Button type="submit" name='submit'>Let's get crackin'!</Button>
           </Form.Group>
           <Form.Check
             onChange={() => this.setState({ showPreferences: false })}
