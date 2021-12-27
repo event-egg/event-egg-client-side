@@ -9,7 +9,7 @@ import Search from './Search';
 class Dashboard extends Component {
   
   componentDidMount = () => {
-    this.getEvents('seattle');
+    this.getEvents(this.props.user.defaultCity || 'Seattle');
   }
   constructor(props){
     super(props);
@@ -20,8 +20,8 @@ class Dashboard extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form submission', e.target);
-    console.log(e.target.exampleForm.value);
+    console.log('form submission', e.target.formBasicCity[0].value); 
+    // console.log(e.target.exampleForm.value);
     this.getEvents(e.target.exampleForm.value);
   }
 
