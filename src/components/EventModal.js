@@ -42,6 +42,10 @@ class EventModal extends Component {
               </>}
           </Modal.Body>
           <Modal.Footer>
+            {this.props.modalEventType === 'newEvent' ?
+              <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} /> :
+              <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} />
+            }
             <Button variant="secondary" onClick={this.handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>

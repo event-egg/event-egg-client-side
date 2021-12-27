@@ -12,9 +12,7 @@ class EventCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: this.props.type,
-      modalEvent: this.props.event,
-      modalIsShown: false
+      type: this.props.type
     }
   }
 
@@ -25,7 +23,8 @@ class EventCard extends Component {
 
   // show modal when user clicks event image
   handleImgClick = () => {
-    this.props.showModal(this.props.event);
+    console.log('event type: ', this.props.type)
+    this.props.showModal(this.props.event, this.props.type);
   }
 
   render() {
