@@ -41,7 +41,8 @@ class Dashboard extends Component {
     const jwt = res.__raw;
     const config = {
       method: 'post',
-      baseURL: 'http://localhost:3001',
+      // change back to process.env
+      baseURL: process.env.REACT_APP_SERVER_URL,
       url: `/events`,
       data: searchObject,
       headers: {

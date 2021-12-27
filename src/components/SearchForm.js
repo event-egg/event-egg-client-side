@@ -13,8 +13,8 @@ class SearchForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const searchObject = {
-      city: e.target.city.value || this.props.user.defaultCity
-      // interests: e.target.interests.value || this.props.user.defaultInterests
+      city: e.target.city.value || this.props.user.defaultCity,
+      // interests: [e.target.newSearch.value] || this.props.user.defaultInterests
     }
     console.log('handleSubmit', searchObject);
     this.props.setSearchState(searchObject);
@@ -26,14 +26,12 @@ class SearchForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group className="mb-3"  >
             {/* <Form.Label>Event Category</Form.Label>
-            <Form.Control type="text" placeholder='"sportsball"' />
-            <Form.Label>Date</Form.Label>
+            <Form.Control type="text" placeholder="sportsball" /> */}
+            {/* <Form.Label>Date</Form.Label>
             <Form.Control type="date" /> */}
             <Form.Label>City</Form.Label>
             <Form.Control id="city" type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
-          </Form.Group>
-            <Button type="submit" name='submit'>Let's get crackin'!</Button>
-          {/* <Form.Check
+            <Form.Check
             onChange={() => this.setState({ showPreferences: false })}
             type="radio"
             label="Use My Preferences"
@@ -48,14 +46,13 @@ class SearchForm extends Component {
             id="newPreferences"
           />
           {this.state.showPreferences &&
-            <Form.Group controlId="formGridState">
-              <Form.Label>State</Form.Label>
-              <Form.Select defaultValue="Choose...">
-                <option>Choose...</option>
-                <option>...</option>
-              </Form.Select>
-            </Form.Group>
-          } */}
+              <>
+                <Form.Label>New Search</Form.Label>
+                <Form.Control id="newSearch" type="text" placeholder='explore new things...' />
+              </>
+            }
+          </Form.Group>
+          <Button type="submit" name='submit'>Let's get crackin'!</Button>
         </Form>
       </div>
     );
