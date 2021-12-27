@@ -8,25 +8,22 @@ import axios from 'axios';
 
 class Dashboard extends Component {
   
-  componentDidMount = () => {
-    console.log(this.props.user.defaultCity);
-    const defaultObject = {
-      city: this.props.user.defaultCity,
-      // interests: this.props.user.defaultInterests,
-      // date: Date()
-    }
-    console.log(Date().split(' ').splice(1, 3).join(' '));
-    this.getEvents(defaultObject || 'Seattle');
-  }
-
   constructor(props){
     super(props);
     this.state = {
       events: "",
-      searchInput: {}
+      searchInput: {},
     }
   }
 
+  componentDidMount = () => {
+    const defaultObject = {
+      city: this.props.user.defaultCity
+      // interests: this.props.user.defaultInterests,
+      // date: Date() // need to format according to search requirements; Date().split(' ').splice(1, 3).join(' ');
+    }
+    this.setState({searchInput: defaultObject}, () => this.getEvents(this.state.searchInput));
+  }
 
   setSearchState = (searchInput) => {
     console.log('form submission', searchInput); 
@@ -42,7 +39,7 @@ class Dashboard extends Component {
     // put token in variable
     const jwt = res.__raw;
     const config = {
-      method: 'get',
+      method: 'post',
       // change back to process.env
       baseURL: 'http://localhost:3001',
       url: `/events?keyword=${searchObject.interests} ${searchObject.city}`,
