@@ -12,7 +12,7 @@ class Search extends Component {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Search</Accordion.Header>
             <Accordion.Body>
-              <SearchForm user={this.props.user} handleSubmit={this.props.handleSubmit}/> 
+              <SearchForm user={this.props.user} setSearchState={this.props.setSearchState} /> 
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

@@ -14,23 +14,28 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.setSearch(e.target.city.value)
+    console.log(e.target.city.value);
+    const searchObject = {
+      city: e.target.city.value || this.props.user.defaultCity,
+      interests: e.target.interests.value || this.props.user.defaultInterests
+    }
+    this.props.setSearchState(searchObject);
   }
 
   render() {
     return (
       <div>
-        <Form onSubmit={this.props.handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicCity" >
-            <Form.Label>Event Category</Form.Label>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group className="mb-3"  >
+            {/* <Form.Label>Event Category</Form.Label>
             <Form.Control type="text" placeholder='"sportsball"' />
             <Form.Label>Date</Form.Label>
-            <Form.Control type="date" />
+            <Form.Control type="date" /> */}
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
-            <Button type="submit" name='submit'>Let's get crackin'!</Button>
+            <Form.Control id="city" type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
           </Form.Group>
-          <Form.Check
+            <Button type="submit" name='submit'>Let's get crackin'!</Button>
+          {/* <Form.Check
             onChange={() => this.setState({ showPreferences: false })}
             type="radio"
             label="Use My Preferences"
@@ -52,8 +57,7 @@ class SearchForm extends Component {
                 <option>...</option>
               </Form.Select>
             </Form.Group>
-          }
-          <Button type='submit'>Search</Button>
+          } */}
         </Form>
       </div>
     );
