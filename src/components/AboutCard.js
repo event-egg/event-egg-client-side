@@ -18,7 +18,7 @@ class AboutCard extends Component {
           <Card.Body>
               <Image roundedCircle className='px-5' fluid variant="top" src={this.props.bio.image} />
                 <Card className='m-3' style={{boxShadow: '3px 3px 2px 2px #0000003f'}}>
-                <Card.Text className='p-3' style={{ textAlign: 'left' }}>
+              <Card.Text className='p-3' style={{ textAlign: 'left', height: '11rem' }}>
                   {this.props.bio.about}
                 </Card.Text>
                 </Card>

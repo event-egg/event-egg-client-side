@@ -35,6 +35,7 @@ class EventCard extends Component {
         <Card.Header style={{ overflow: 'hidden', fontWeight: 'bold', textOverflow: 'ellipsis', whiteSpace: 'nowrap',  backgroundColor: '#8eecf5', border: '1px solid black', boxShadow: '2px 2px 2px 2px #0000003f'}}>
         {this.props.event.name}
         </Card.Header>
+
         <Card.Body>
         <Card.Img  style={{boxShadow: '2px 2px 2px 2px #0000003f'}} variant="top" src={this.props.event.image.url} />
           <Card.Text>
