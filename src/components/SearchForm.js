@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import getCurrentDateTime from '../CurrentDateTime';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -12,14 +13,20 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.date.value);
+    console.log('form Date: ', e.target.date.value);
+    // creates a variable to represent the current date/time as backup value
+    const currentDateTime = getCurrentDateTime();
+
+    const interests = e.target.interests.value;
+    
     const searchObject = {
       city: e.target.city.value || this.props.user.defaultCity,
-      interests: [e.target.interests.value] || this.props.user.defaultInterests,
-      date: e.target.date.value,
+      interests: interests.length > 0 ? [interests] : this.props.user.defaultInterests,
+      date: e.target.date.value ? `${e.target.date.value}T00:00:00` : currentDateTime
+      // converts any e.target.date.value to proper form of 'YYYY-MM-DDTHH:mm:ss'
     }
-    console.log('handleSubmit', searchObject);
-    // this.props.setSearchState(searchObject);
+    console.log('handleSubmit searchObject: ', searchObject);
+    this.props.setSearchState(searchObject);
   }
 
   render() {
@@ -34,6 +41,7 @@ class SearchForm extends Component {
             <Form.Label>City</Form.Label>
             <Form.Control id="city" type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
 
+            {/* Seems unnecessary since this functionality is already present in the form with fewer clicks required. 
             <Form.Check
               onChange={() => this.setState({ showPreferences: false })}
               type="radio"
@@ -53,7 +61,7 @@ class SearchForm extends Component {
                 <Form.Label>New Search</Form.Label>
                 <Form.Control id="newSearch" type="text" placeholder='explore new things...' />
               </>
-            }
+            } */}
           </Form.Group>
           <Button type="submit" name='submit'>Let's get crackin'!</Button>
         </Form>

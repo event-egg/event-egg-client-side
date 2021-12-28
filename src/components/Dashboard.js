@@ -4,6 +4,7 @@ import Search from './Search';
 import Row from 'react-bootstrap/Row'
 import axios from 'axios';
 import cache from '../cache.js';
+import getCurrentDateTime from '../CurrentDateTime';
 
 class Dashboard extends Component {
 
@@ -18,9 +19,9 @@ class Dashboard extends Component {
   componentDidMount = () => {
     if (cache.searchInput === undefined || cache.searchInput === null) {
       const defaultObject = {
-        city: this.props.user.defaultCity
-        // interests: this.props.user.defaultInterests,
-        // date: Date() // need to format according to search requirements; Date().split(' ').splice(1, 3).join(' ');
+        city: this.props.user.defaultCity,
+        interests: this.props.user.defaultInterests,
+        date: getCurrentDateTime()
       }
       this.setState({ searchInput: defaultObject }, () => this.getEvents(this.state.searchInput))
     } else {
@@ -31,27 +32,32 @@ class Dashboard extends Component {
   setSearchState = (searchInput) => {
     cache.searchInput = searchInput;
     console.log('setCurrentState cache', cache.searchInput);
-    this.setState({ searchInput: searchInput}, () => this.getEvents(this.state.searchInput));
+    this.setState({ searchInput: searchInput }, () => this.getEvents(this.state.searchInput));
   }
 
   getEvents = async (searchObject) => {
     console.log("Get Events:", searchObject);
-    const res = await this.props.auth0.getIdTokenClaims();
-    // put token in variable
-    const jwt = res.__raw;
-    const config = {
-      method: 'post',
-      // change back to process.env
-      baseURL: process.env.REACT_APP_SERVER_URL,
-      url: `/events`,
-      data: searchObject,
-      headers: {
-        "Authorization": `Bearer ${jwt}`
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+      // put token in variable
+      const jwt = res.__raw;
+      const config = {
+        method: 'post',
+        // change back to process.env
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/events`,
+        data: searchObject,
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
       }
+      console.log("config",config);
+      const eventsResponse = await axios(config);
+      console.log('eventsResponse.data: ', eventsResponse.data);
+      this.setState({ events: eventsResponse.data });
+    } catch (e) {
+      console.error(e);
     }
-    const eventsResponse = await axios(config);
-    console.log('eventsResponse.data: ', eventsResponse.data);
-    this.setState({ events: eventsResponse.data });
   }
 
   render() {
