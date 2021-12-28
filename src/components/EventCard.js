@@ -29,7 +29,7 @@ class EventCard extends Component {
 
   render() {
     return (
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem' }} className='m-2'>
         <Card.Img variant="top" src={this.props.event.image.url} onClick={this.handleImgClick} />
         <Card.Body>
           <Card.Title>{this.props.event.name}</Card.Title>
