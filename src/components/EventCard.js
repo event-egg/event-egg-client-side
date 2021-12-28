@@ -3,8 +3,6 @@ import Card from 'react-bootstrap/Card';
 import SaveEventBtn from './SaveEventBtn';
 import RemoveEventBtn from './RemoveEventBtn';
 import Button from 'react-bootstrap/Button';
-import {Row, Col, Container} from 'react-bootstrap';
-
 
 
 class EventCard extends Component {
