@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import WelcomeSubmitBtn from './WelcomeSubmitBtn';
-import Col from 'react-bootstrap/Col';
+// import Col from 'react-bootstrap/Col';
 // import Row from 'react-bootstrap/Row';
 import { withAuth0 } from '@auth0/auth0-react';
+import eventCategories from '../eventCategories.js'
 
 
 // Basic outline of form
@@ -52,46 +53,44 @@ class WelcomeForm extends Component {
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
               <Form.Label>Interests</Form.Label>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="movies"
-                  name="interestCheckboxes"
-                  id="movies"
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="music"
-                  name="interestCheckboxes"
-                  id="music"
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="coffee"
-                  name="interestCheckboxes"
-                  id="coffee"
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="theatre"
-                  name="interestCheckboxes"
-                  id="theatre"
-                />
-              </Col>
-              <Col>
-                <Form.Check
-                  type="checkbox"
-                  label="nightlife"
-                  name="interestCheckboxes"
-                  id="nightlife"
-                />
-              </Col>
+              {
+                eventCategories.map(category => {
+                let nonAlphaChars = /\W/;
+                let id = category.toLowerCase().replace(nonAlphaChars, '');
+                  return (<Form.Check
+                    key={id}
+                    type="checkbox"
+                    label={category}
+                    name="interestCheckboxes"
+                    id={id}
+                  />
+                  )} 
+                )
+              }
+              {/* <Form.Check
+                type="checkbox"
+                label="music"
+                name="interestCheckboxes"
+                id="music"
+              />
+              <Form.Check
+                type="checkbox"
+                label="coffee"
+                name="interestCheckboxes"
+                id="coffee"
+              />
+              <Form.Check
+                type="checkbox"
+                label="theatre"
+                name="interestCheckboxes"
+                id="theatre"
+              />
+              <Form.Check
+                type="checkbox"
+                label="nightlife"
+                name="interestCheckboxes"
+                id="nightlife"
+              /> */}
             </Form.Group>
           </fieldset>
           <Button type='submit' name='submit' >Submit</Button>
