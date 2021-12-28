@@ -107,6 +107,23 @@ $gunmetal: #293241ff;
       font-size: 1.01em;
     }
   }
+
+  .more-info-button {
+    position: absolute;
+    bottom: 2rem;
+    left: 9rem;
+    background-color: $baby-blue-eyes;
+    color: black;
+    border: solid 1px $pink-lavender;
+    &:hover {
+      background-color: $mauve;
+      color: black;
+      border: solid 1.5px $gunmetal;
+      font-size: 2rem;
+      font-size: 1.01em;
+    }
+  }
+
 }
 
 .App-link {

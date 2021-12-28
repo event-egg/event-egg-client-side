@@ -1,9 +1,6 @@
 
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
-import SaveEventBtn from './SaveEventBtn';
-import RemoveEventBtn from './RemoveEventBtn';
 import Button from 'react-bootstrap/Button';
 
 
@@ -14,8 +11,6 @@ class EventModal extends Component {
     this.props.closeModal();
   }
 
-
-
   render() {
     return (
 
@@ -24,17 +19,18 @@ class EventModal extends Component {
         {console.log('modalIsShown: ', this.props.modalIsShown)}
         {console.log('modalEvent: ', this.props.event)}
 
-        <Modal show={this.props.modalIsShown} onHide={() => this.handleClose()}>
+        <Modal show={this.props.modalIsShown} onHide={() => this.handleClose()} className="event-modal">
           <Modal.Header>
             <Modal.Title>{this.props.event.name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {this.props.event.id &&
               <>
-                <img src={this.props.event.image.url} alt={this.props.event.name} target="_blank" rel="noreferrer" /> <br />
+                <img src={this.props.event.image.url} alt={this.props.event.name} /> <br />
                 {this.props.event.description === 'Undefined' ? '' : this.props.event.description} <br />
-                <a href={this.props.event.link}>Get Tickets</a> <br />
-                {this.props.event.startTime} <br />
+                <a href={this.props.event.link} target="_blank" rel="noreferrer">Get Tickets</a> <br />
+                {this.props.event.localDate} <br />
+                {this.props.event.localTime} <br />
                 {this.props.event.address.venueName} <br />
                 {this.props.event.address.street.line1} <br />
                 {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
@@ -42,11 +38,7 @@ class EventModal extends Component {
               </>}
           </Modal.Body>
           <Modal.Footer>
-            {this.props.modalEventType === 'newEvent' ?
-              <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} /> :
-              <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} />
-            }
-            <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+            <Button className="close-modal-button" onClick={this.handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div >

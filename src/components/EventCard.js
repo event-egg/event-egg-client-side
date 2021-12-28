@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import SaveEventBtn from './SaveEventBtn';
 import RemoveEventBtn from './RemoveEventBtn';
 import Button from 'react-bootstrap/Button';
-import EventModal from './EventModal';
 
 
 class EventCard extends Component {
@@ -22,15 +21,15 @@ class EventCard extends Component {
 
 
   // show modal when user clicks event image
-  handleImgClick = () => {
+  handleMoreInfoClick = () => {
     console.log('event type: ', this.props.type)
-    this.props.showModal(this.props.event, this.props.type);
+    this.props.showModal(this.props.event);
   }
 
   render() {
     return (
       <Card style={{ width: '18rem' }} className='m-2' className='card-styled' >
-        <Card.Img variant="top" src={this.props.event.image.url} onClick={this.handleImgClick} />
+        <Card.Img variant="top" src={this.props.event.image.url} />
         <Card.Body>
           <Card.Title>{this.props.event.name}</Card.Title>
           <Card.Text>
@@ -41,6 +40,7 @@ class EventCard extends Component {
             <SaveEventBtn saveEvent={this.props.saveEvent} event={this.props.event} user={this.props.user} changeToMyEvent={this.changeToMyEvent} /> :
             <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} changeToMyEvent={this.changeToMyEvent} />
           }
+          <Button className="more-info-button" onClick={this.handleMoreInfoClick}>More Info</Button>
         </Card.Body>
       </Card>
     );
