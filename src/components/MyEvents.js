@@ -12,8 +12,8 @@ class MyEvents extends Component {
 
   render() {
     return (
-      <Container>
-          <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f'}}>MyEvents</h1>
+      <Container className="card-container">
+        <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f' }}>My Events</h1>
           <hr></hr>
         {this.props.user.savedEvents.length > 0 ?
           <Row sm={1} md={2} lg={5}>

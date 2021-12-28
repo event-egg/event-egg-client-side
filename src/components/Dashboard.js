@@ -63,7 +63,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="card-container">
         <h1>{this.props.user.defaultCity}</h1>
         <Search user={this.props.user} setSearchState={this.setSearchState} />
         {this.state.events.length > 0 &&

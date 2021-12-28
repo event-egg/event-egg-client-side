@@ -7,8 +7,8 @@ import SearchForm from './SearchForm';
 class Search extends Component {
   render() {
     return (
-      <div>
-        <Accordion defaultActiveKey="1" >
+      <div className="search-bar">
+        <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Search</Accordion.Header>
             <Accordion.Body>
