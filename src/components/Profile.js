@@ -39,33 +39,42 @@ class Profile extends Component {
   render() {
     return (
       <Container>
-        <Card style={{ maxWidth: '500px' }}>
-          <Container>
+        <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f'}}>MyEvents</h1>
+          <hr></hr>
+        <Container className="d-flex justify-content-center pt-5">
+          
+        <Card style={{ minWidth: '500px', maxWidth: '75%', boxShadow: '3px 3px 2px 2px #0000003f', fontSize: '1.2em' }}>
+          <Card.Header style={{ 
+                textAlign: 'center', 
+                fontSize: '1.8em', 
+                fontWeight: 'bold', 
+                backgroundColor: '#8eecf5',
+                }}>Profile</Card.Header>
             <Card.Body>
-              <Card.Title>Your Profile</Card.Title>
-              <Card.Header>{this.props.user.name}</Card.Header>
               <ListGroup variant="flush">
-                <ListGroupItem>Email: {this.props.user.email}</ListGroupItem>
-                <ListGroupItem>Location: {this.props.user.defaultCity}</ListGroupItem>
-                <ListGroupItem>Interests: <br />
+                <ListGroupItem><strong>Name:</strong> {this.props.user.name}</ListGroupItem>
+                <ListGroupItem><strong>Email:</strong> {this.props.user.email}</ListGroupItem>
+                <ListGroupItem><strong>Location:</strong> {this.props.user.defaultCity}</ListGroupItem>
+                <ListGroupItem><strong>Interests:</strong> <br />
                   {
                     this.props.user.defaultInterests.map(interest =>
-                      <Badge pill bg="success" key={interest}>{interest}</Badge>)
+                      <Badge pill bg="success"  key={interest}><span className='pt-1 pb-2'>{interest}</span></Badge>)
                   }
                 </ListGroupItem>
-              </ListGroup>
-            
+              </ListGroup>         
             <Container>
               <Stack direction="horizontal" xs={2} gap={4}>
-                <Button size="lg" variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
-                <Button size="lg" variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f'}} variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
+                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f'}} variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
               </Stack>
             </Container>
             </Card.Body>
-            <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
-            <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
-          </Container>
+            <Container>
+              <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
+              <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
+            </Container>
         </Card>
+        </Container>
       </Container>
     );
   }
