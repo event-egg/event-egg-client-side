@@ -46,6 +46,7 @@ class EditProfileModal extends Component {
                       let nonAlphaChars = /\W/;
                       let id = category.toLowerCase().replace(nonAlphaChars, '');
                       return (<Form.Check
+                        key={id}
                         type="checkbox"
                         label={category}
                         name="interestCheckboxes"
