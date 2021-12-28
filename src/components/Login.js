@@ -14,7 +14,7 @@ function LoginButton(props) {
 class Login extends Component {
   render() {
     return (
-      <Container style={{height: '100vh', background: 'linear-gradient(90deg, rgba(160,155,232,1) 9%, rgba(124,207,143,1) 52%, rgba(0,212,255,1) 100%)' }} fluid>
+      <Container style={{height: '100vh', background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)' }} fluid>
         <Col className='p-5 d-flex justify-content-between flex-column pt-5 mb-0' style={{height: '100%'}}>
           <Container  className="d-flex justify-content-around mt-5 pb-5" fluid>
           <h1 style={{minWidth: '30%', textDecoration: 'underline'}} className='text-center text-nowrap display-1' fluid><strong>Event Egg</strong></h1>
@@ -22,7 +22,7 @@ class Login extends Component {
           <Container className="d-flex justify-content-around m-0 p-0" fluid>
             <Image style={{minWidth: '300px'}} src='./img/white-egg8bit.png' fluid/>
           </Container>
-          <Container className="d-flex justify-content-around mb-5 pt-5 pb-5" fluid>
+          <Container className="d-flex justify-content-around mb-5 pt-5 pb-2" fluid>
             <LoginButton />
           </Container>
         </Col>
