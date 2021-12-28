@@ -41,11 +41,16 @@ $gunmetal: #293241ff;
   margin: auto;
   margin: .5rem;
   button {
-    background-color: $baby-blue-eyes;
+    font-size: .7em;
+    background-color: $baby-pink;
     color: black;
-    border: solid 1px $mauve;
+    border: solid 1px $gunmetal;
+  }
+  label, input {
+    font-size: 1.3em;;
   }
   .btn {
+    font-size: 1.2em;
     background-color: $pink-lavender;
     border: solid 1px $gunmetal;
     &:hover {

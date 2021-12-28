@@ -43,6 +43,12 @@ class Dashboard extends Component {
   resetSearchState = () => {
     console.log('cache', cache);
     cache.searchInput = {};
+    const defaultObject = {
+      city: this.props.user.defaultCity,
+      interests: this.props.user.defaultInterests,
+      date: getCurrentDateTime()
+    }
+    this.setState({ searchInput: defaultObject }, () => this.getEvents(this.state.searchInput))
   }
 
   getEvents = async (searchObject) => {
@@ -73,9 +79,8 @@ class Dashboard extends Component {
   render() {
     return (
       <Container className="card-container">
-        <Button onClick={this.resetSearchState}>reset</Button>
         <h1>Events in {this.state.searchInput.city ? this.state.searchInput.city.toUpperCase() : this.props.user.defaultCity.toUpperCase()}!</h1>
-        <Search user={this.props.user} setSearchState={this.setSearchState} />
+        <Search user={this.props.user} setSearchState={this.setSearchState} resetSearchState={this.resetSearchState} />
         {this.state.events.length > 0 &&
           <Row md={3} lg={5}>
             {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} showModal={this.props.showModal} />)}
