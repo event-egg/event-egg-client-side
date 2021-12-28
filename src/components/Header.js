@@ -16,15 +16,19 @@ class Header extends Component {
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
         <Container fluid className='d-inline-flex justify-content-end my-2'>
-        <Navbar.Brand className='me-auto' href="/"  style={{fontSize: '1.4em'}}>
-            <Image
-              alt=""
-              src='./img/white-egg8bit.png'
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />
-          Event Egg
+        <Navbar.Brand className='me-auto d-inline-flex justify-content-center'  style={{fontSize: '1.4em'}}>
+        <Link to="/" className='me-auto d-inline-flex align-items-center'>
+              <Image
+                alt=""
+                src='./img/white-egg8bit.png'
+                width="40"
+                height="40"
+                className="d-inline-block align-top"
+              />
+            </Link>
+            <Container className='me-auto d-inline-flex align-items-center'>
+              Event Egg
+            </Container>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse className='px-2' id="responsive-navbar-nav">
