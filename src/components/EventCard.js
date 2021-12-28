@@ -5,6 +5,7 @@ import RemoveEventBtn from './RemoveEventBtn';
 import Button from 'react-bootstrap/Button';
 
 
+
 class EventCard extends Component {
 
   // Constructor to create state
@@ -28,8 +29,10 @@ class EventCard extends Component {
 
   render() {
     return (
-      <Card style={{ width: '18rem' }} className='m-2' className='card-styled' >
+
+      <Card style={{ width: '18rem' }} className='m-2 card-styled' >
         <Card.Img variant="top" src={this.props.event.image.url} />
+
         <Card.Body>
           <Card.Title>{this.props.event.name}</Card.Title>
           <Card.Text>
