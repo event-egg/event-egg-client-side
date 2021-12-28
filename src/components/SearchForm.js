@@ -64,6 +64,7 @@ class SearchForm extends Component {
             } */}
           </Form.Group>
           <Button type="submit" name='submit'>Let's get crackin'!</Button>
+          <Button style={{ marginLeft: "1rem" }} onClick={this.props.resetSearchState}>Reset search</Button>
         </Form>
       </div >
     );

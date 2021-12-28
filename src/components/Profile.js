@@ -39,7 +39,7 @@ class Profile extends Component {
   render() {
     return (
       <Container>
-        <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f'}}>MyEvents</h1>
+        <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f' }}>My Profile</h1>
           <hr></hr>
         <Container className="d-flex justify-content-center pt-5">
           
@@ -49,7 +49,7 @@ class Profile extends Component {
                 fontSize: '1.8em', 
                 fontWeight: 'bold', 
                 backgroundColor: '#8eecf5',
-                }}>Profile</Card.Header>
+            }}>Profile Details</Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroupItem><strong>Name:</strong> {this.props.user.name}</ListGroupItem>
