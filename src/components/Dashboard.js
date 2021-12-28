@@ -36,6 +36,7 @@ class Dashboard extends Component {
 
   getEvents = async (searchObject) => {
     console.log("Get Events:", searchObject);
+    try {
     const res = await this.props.auth0.getIdTokenClaims();
     // put token in variable
     const jwt = res.__raw;
@@ -52,6 +53,9 @@ class Dashboard extends Component {
     const eventsResponse = await axios(config);
     console.log('eventsResponse.data: ', eventsResponse.data);
     this.setState({ events: eventsResponse.data });
+  } catch (e) {
+    res.status(500).send(e);
+  }
   }
 
   render() {
