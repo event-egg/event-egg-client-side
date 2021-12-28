@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Row, Col, Image, Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
 
@@ -6,21 +7,37 @@ import Card from 'react-bootstrap/Card';
 class AboutCard extends Component {
   render() {
     return (
-      <div>
-        <Card style={{ width: '18rem' }}>
-          <Card.Header>{this.props.bio.name}</Card.Header>
-          <Card.Img variant="top" src={this.props.bio.image} />
+      <Container>
+        <Card className='m-3' border="dark" style={{ minHeight:'580px', minWidth: '500', boxShadow: '3px 3px 2px 2px #0000003f'}}>
+          <Card.Header style={{
+                textAlign: 'center', 
+                fontSize: '2.2em', 
+                fontWeight: 'bold', 
+                backgroundColor: '#98f5e1',
+                }}>{this.props.bio.name}</Card.Header>
           <Card.Body>
-            <Card.Text>
-              {this.props.bio.about}<br />
-              <a href={this.props.bio.githubLink} target="_blank" rel="noreferrer">GitHub</a><br />
-              <a href={this.props.bio.linkedinLink} target="_blank" rel="noreferrer">LinkedIn</a>
-            </Card.Text>
+              <Image roundedCircle className='px-5' fluid variant="top" src={this.props.bio.image} />
+                <Card className='m-3' style={{boxShadow: '3px 3px 2px 2px #0000003f'}}>
+                <Card.Text className='p-3' style={{ textAlign: 'left' }}>
+                  {this.props.bio.about}
+                </Card.Text>
+                </Card>
           </Card.Body>
+          <Card.Footer style={{
+                textAlign: 'center', 
+                fontWeight: 'bold', 
+                backgroundColor: '#cfbaf0',
+                }}>
+            <Row>
+              <Col className='text-center m-2'><Button variant="dark" style={{ fontSize: '1.2em',  boxShadow: '3px 3px 2px 2px #0000003f' }} onClick={() => this.props.bio.githubLink()}>GitHub</Button></Col>
+              <Col className='text-center m-2'><Button variant="outline-info" style={{ fontSize: '1.2em', backgroundColor: 'white',  boxShadow: '3px 3px 2px 2px #0000003f'}} onClick={() => this.props.bio.linkedinLink()}>LinkedIn</Button></Col>
+            </Row>        
+          </Card.Footer>
         </Card>
-      </div>
+      </Container>
     );
   }
 }
 
 export default AboutCard;
+

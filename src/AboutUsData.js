@@ -2,7 +2,7 @@ const aboutUsArray = [
   {
     name: "Kellen Linse",
     image: "./img/kellen.png",
-    about: "Software developer, interested in all things tech. With a primary focus in Web Development/Embedded Systems/IoT/LED related projects. My projects include making my own custom WiFi and Bluetooth enabled microcontrollers with built in accelerometers, gyroscopes, IR receivers, and more, and working with depth cameras like the Microsoft Azure Kinect making interactive art installation for corporate events and music festivals.",
+    about: "Software developer, interested in all things tech. With a primary focus in Web Development, Embedded Systems, IoT, and LED related projects- including designing and building custom WiFi and Bluetooth enabled microcontrollers.",
     githubLink: "https://www.github.com/Kellen-Linse",
     linkedinLink: "https://www.linkedin.com/in/kellen-linse/"
   },
