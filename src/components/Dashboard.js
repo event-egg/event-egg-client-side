@@ -64,7 +64,7 @@ class Dashboard extends Component {
   render() {
     return (
       <Container className="card-container">
-        <h1>{this.props.user.defaultCity}</h1>
+        <h1>Events in {this.state.searchInput.city ? this.state.searchInput.city.toUpperCase() : this.props.user.defaultCity.toUpperCase()}!</h1>
         <Search user={this.props.user} setSearchState={this.setSearchState} />
         {this.state.events.length > 0 &&
           <Row sm={1} md={2} lg={5}>
