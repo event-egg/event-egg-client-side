@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
 import SearchForm from './SearchForm';
 
 // To Do: Change Accordian toggle to magnifying glass

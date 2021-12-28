@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import SaveEventBtn from './SaveEventBtn';
 import RemoveEventBtn from './RemoveEventBtn';
