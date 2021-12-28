@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import getCurrentDateTime from '../CurrentDateTime';
 
 class SearchForm extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class SearchForm extends Component {
     e.preventDefault();
     console.log('form Date: ', e.target.date.value);
     // creates a variable to represent the current date/time as backup value
-    const currentDateTime = this.getCurrentDateTime();
+    const currentDateTime = getCurrentDateTime();
     
     const searchObject = {
       city: e.target.city.value || this.props.user.defaultCity,
@@ -24,17 +25,6 @@ class SearchForm extends Component {
     }
     console.log('handleSubmit searchObject: ', searchObject);
     this.props.setSearchState(searchObject);
-  }
-
-  getCurrentDateTime = () => {
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1;
-    const currentDay = currentDate.getDate();
-    const currentHour = currentDate.getHours();
-    const currentMin = currentDate.getMinutes();
-    const currentDateTime = `${currentYear}-${currentMonth}-${currentDay}T${currentHour}:${currentMin}:00`;
-    return currentDateTime;
   }
 
   render() {
