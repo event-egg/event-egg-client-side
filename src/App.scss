@@ -37,7 +37,7 @@ $gunmetal: #293241ff;
 }
 
 .search-bar {
-  width: 98.5%;
+  width: 96%;
   margin: auto;
   margin: .5rem;
   button {
@@ -152,13 +152,13 @@ $small-phone: 767px;
   .search-bar {
     margin: auto;
     margin-bottom: .5rem;
-    width: 85%;
+    width: 82.5%;
   }
 }
 
 @media (max-width: $breakpoint-tablet-small) {
   .search-bar {
-    width: 66.1%;
+    width: 58rem;
   }
 }
 

@@ -85,7 +85,7 @@ class Dashboard extends Component {
         <hr></hr>
         <Search user={this.props.user} setSearchState={this.setSearchState} resetSearchState={this.resetSearchState} />
         {this.state.events.length > 0 &&
-          <Row md={3} lg={5}>
+          <Row md={3} lg={4}>
             {this.state.events.length > 0 && this.state.events.map((event, idx) => <EventCard type="newEvent" event={event} key={`${event.id}${idx}`} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} showModal={this.props.showModal} />)}
           </Row>}
       </Container>
