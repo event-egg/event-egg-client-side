@@ -15,7 +15,7 @@ class SearchForm extends Component {
     console.log(e.target.date.value);
     const searchObject = {
       city: e.target.city.value || this.props.user.defaultCity,
-      // interests: [e.target.newSearch.value] || this.props.user.defaultInterests
+      interests: [e.target.interests.value] || this.props.user.defaultInterests,
       date: e.target.date.value,
     }
     console.log('handleSubmit', searchObject);
