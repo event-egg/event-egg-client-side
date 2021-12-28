@@ -148,7 +148,7 @@ class App extends Component {
 
   showModal = (event, eventType) => {
     // console.log('showModal activated');
-    this.setState({ modalIsShown: true, modalEvent: event, modalEventType: eventType });
+    this.setState({ modalIsShown: true, modalEvent: event });
   }
 
   closeModal = () => {
@@ -185,7 +185,7 @@ class App extends Component {
                       <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
                       <Route path="/about" element={<About />} />
                     </Routes>
-                    <EventModal modalIsShown={this.state.modalIsShown} closeModal={this.closeModal} event={this.state.modalEvent} user={this.state.user} modalEventType={this.state.modalEventType} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />
+                    <EventModal modalIsShown={this.state.modalIsShown} closeModal={this.closeModal} event={this.state.modalEvent} user={this.state.user} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />
                     <Footer />
                   </ Router>
             }
