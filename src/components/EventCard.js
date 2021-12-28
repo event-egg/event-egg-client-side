@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import SaveEventBtn from './SaveEventBtn';
 import RemoveEventBtn from './RemoveEventBtn';
-import Button from 'react-bootstrap/Button';
-import EventModal from './EventModal';
 
 
 class EventCard extends Component {

@@ -3,7 +3,6 @@ import EventCard from './EventCard';
 import Search from './Search';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import cache from '../cache.js';
 import getCurrentDateTime from '../CurrentDateTime';
