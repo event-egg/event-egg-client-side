@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import About from './components/About';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner'
+import EventModal from './components/EventModal';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
@@ -22,52 +23,54 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
-      isLoading: true
+      isLoading: true,
+      modalIsShown: false,
+      modalEvent: {}
     }
   }
 
   getUserData = async () => {
-    try{
-    const res = await this.props.auth0.getIdTokenClaims();
-    const jwt = res.__raw;
-    const config = {
-      method: 'get',
-      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-      url: `/user?email=${this.props.auth0.user.email}`,
-      headers: {
-        "Authorization": `Bearer ${jwt}`
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+      const jwt = res.__raw;
+      const config = {
+        method: 'get',
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+        url: `/user?email=${this.props.auth0.user.email}`,
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
       }
-    }
-    const userFromDB = await axios(config);
-    this.setState({ user: userFromDB.data }, () => {
-      setTimeout(() => {
-        this.setState({isLoading: false});
-      }, 500); // <------- adjust this to adjust spinner time
-    });
-  } catch (err) {
-    console.log(err);
-  };
+      const userFromDB = await axios(config);
+      this.setState({ user: userFromDB.data }, () => {
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 500); // <------- adjust this to adjust spinner time
+      });
+    } catch (err) {
+      console.log(err);
+    };
   }
 
-  
+
   // called in WelcomeForm.js
   createUser = async (user) => {
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
       const config = {
-      method: 'post',
-      baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-      url: `/user`,
-      data: user,
-      headers: { "Authorization": `Bearer ${jwt}` }
+        method: 'post',
+        baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+        url: `/user`,
+        data: user,
+        headers: { "Authorization": `Bearer ${jwt}` }
       }
-        const updatedUser = await axios(config);
-        this.setState({ user: updatedUser.data });
-      } catch (e) {
-        console.error(e);
-      }
+      const updatedUser = await axios(config);
+      this.setState({ user: updatedUser.data });
+    } catch (e) {
+      console.error(e);
     }
+  }
 
   //called in ProfileUpdateModal.js
   updateUser = async (user, id) => {
@@ -99,7 +102,7 @@ class App extends Component {
         headers: { "Authorization": `Bearer ${jwt}` }
       }
       await axios(config);
-      this.setState({ user: {}})    
+      this.setState({ user: {} })
     } catch (e) {
       console.error(e);
     }
@@ -118,7 +121,7 @@ class App extends Component {
         headers: { "Authorization": `Bearer ${jwt}` }
       }
       const userUpdatedWithEvents = await axios(config);
-      this.setState({user: userUpdatedWithEvents.data});
+      this.setState({ user: userUpdatedWithEvents.data });
     } catch (e) {
       console.error(e);
     }
@@ -134,45 +137,57 @@ class App extends Component {
         baseURL: `${process.env.REACT_APP_SERVER_URL}`,
         url: `/events/${user._id}`,
         data: event,
-        headers: {"Authorization": `Bearer ${jwt}`}
+        headers: { "Authorization": `Bearer ${jwt}` }
       }
       const userUpdatedRemovedEvent = await axios(config);
-      this.setState({user: userUpdatedRemovedEvent.data}, () => console.log("delete Event callback"))
+      this.setState({ user: userUpdatedRemovedEvent.data }, () => console.log("delete Event callback"))
     } catch (e) {
       console.error(e);
     }
   }
 
+  showModal = (event, eventType) => {
+    console.log('showModal activated');
+    this.setState({ modalIsShown: true, modalEvent: event, modalEventType: eventType });
+  }
+
+  closeModal = () => {
+    console.log('closeModal activated');
+    this.setState({ modalIsShown: false });
+    !this.state.modalIsShown ? console.log('showModal state is false') : console.log('showModal state is true')
+  }
+
   componentDidMount() {
-    const { getAccessTokenSilently } = this.props.auth0; 
+    const { getAccessTokenSilently } = this.props.auth0;
     getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
   }
 
   render() {
-    
+
     return (
       <>
-        {!(this.props.auth0.isAuthenticated ||  this.props.auth0.isLoading) ?
+        {!(this.props.auth0.isAuthenticated || this.props.auth0.isLoading) ?
           <Login /> :
           <>
             {
-              this.state.isLoading  || this.props.auth0.isLoading ?
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-              : 
-              Object.keys(this.state.user).length === 0 ?
-              <Welcome createUser={this.createUser} /> :
-              <Router>
-                <Header />
-                  <Routes>
-                      <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />} />
-                      <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} deleteEvent={this.deleteEvent} />} />
+              this.state.isLoading || this.props.auth0.isLoading ?
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+                :
+                Object.keys(this.state.user).length === 0 ?
+                  <Welcome createUser={this.createUser} /> :
+                  <Router>
+                    <Header />
+                    <Routes>
+                      <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} showModal={this.showModal} closeModal={this.closeModal} />} />
+                      <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} deleteEvent={this.deleteEvent} showModal={this.showModal} closeModal={this.closeModal} />} />
                       <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
-                      <Route path="/about" element={<About />} /> 
-                  </Routes>
-                <Footer />
-              </ Router>
+                      <Route path="/about" element={<About />} />
+                    </Routes>
+                    <EventModal modalIsShown={this.state.modalIsShown} closeModal={this.closeModal} event={this.state.modalEvent} user={this.state.user} modalEventType={this.state.modalEventType} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />
+                    <Footer />
+                  </ Router>
             }
           </>
         }

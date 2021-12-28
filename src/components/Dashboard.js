@@ -14,10 +14,11 @@ class Dashboard extends Component {
   }
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       events: ""
+
     }
   }
 
@@ -63,10 +64,11 @@ class Dashboard extends Component {
           </Form.Group>
           <Button type='submit' name='submit' >Submit</Button>
         </Form>
-        { this.state.events.length > 0   &&
-        <Row sm={1} md={2} lg={5}>
-            {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} />)}
-          </Row>}   
+         {this.state.events.length > 0 &&
+          <Row sm={1} md={2} lg={5}>
+            {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} showModal={this.props.showModal}/>)}
+          </Row>
+          }   
       </div>
     );
   }
