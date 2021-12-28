@@ -109,7 +109,7 @@ class App extends Component {
   }
 
   saveEvent = async (user, event) => {
-    console.log("User in save Event:", user);
+    // console.log("User in save Event:", user);
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -128,7 +128,7 @@ class App extends Component {
   }
 
   deleteEvent = async (user, event) => {
-    console.log("User in deleteEvent:", user);
+    // console.log("User in deleteEvent:", user);
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -140,21 +140,21 @@ class App extends Component {
         headers: { "Authorization": `Bearer ${jwt}` }
       }
       const userUpdatedRemovedEvent = await axios(config);
-      this.setState({ user: userUpdatedRemovedEvent.data }, () => console.log("delete Event callback"))
+      this.setState({ user: userUpdatedRemovedEvent.data })
     } catch (e) {
       console.error(e);
     }
   }
 
   showModal = (event, eventType) => {
-    console.log('showModal activated');
+    // console.log('showModal activated');
     this.setState({ modalIsShown: true, modalEvent: event, modalEventType: eventType });
   }
 
   closeModal = () => {
-    console.log('closeModal activated');
+    // console.log('closeModal activated');
     this.setState({ modalIsShown: false });
-    !this.state.modalIsShown ? console.log('showModal state is false') : console.log('showModal state is true')
+    // !this.state.modalIsShown ? console.log('showModal state is false') : console.log('showModal state is true')
   }
 
   componentDidMount() {
