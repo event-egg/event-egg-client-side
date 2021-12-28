@@ -8,7 +8,7 @@ class Search extends Component {
   render() {
     return (
       <div className="search-bar">
-        <Accordion style={{ display: "inline" }}>
+        <Accordion style={{ display: "inline", }}>
           <Accordion.Item eventKey="0">
             <Accordion.Header>Search</Accordion.Header>
             <Accordion.Body>
