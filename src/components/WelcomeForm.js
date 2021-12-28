@@ -56,11 +56,13 @@ class WelcomeForm extends Component {
               {
                 eventCategories.map(category => {
                 let nonAlphaChars = /\W/;
+                let id = category.toLowerCase().replace(nonAlphaChars, '');
                   return (<Form.Check
+                    key={id}
                     type="checkbox"
                     label={category}
                     name="interestCheckboxes"
-                    id={category.toLowerCase().replace(nonAlphaChars, '')}
+                    id={id}
                   />
                   )} 
                 )
