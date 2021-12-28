@@ -25,8 +25,7 @@ class App extends Component {
       user: {},
       isLoading: true,
       modalIsShown: false,
-      modalEvent: {},
-      modalEventType: ''
+      modalEvent: {}
     }
   }
 
