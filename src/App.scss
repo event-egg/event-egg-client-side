@@ -62,14 +62,15 @@ $gunmetal: #293241ff;
 }
 
 .card-styled {
-  padding: 1rem;
-  height: 28rem;
+  padding: .7rem;
+  height: 21rem;
+  width: 18rem;
   margin: 1.3rem;
   img {
-    height: 12rem;
+    height: 10rem;
   }
   p {
-    height: 5rem;
+    height: 0rem;
     overflow: hidden;
   }
   .save-button {
@@ -119,7 +120,7 @@ $gunmetal: #293241ff;
 $breakpoint-tablet: 1399px;
 $breakpoint-tablet-small: 1199px;
 $phone: 991px;
-$small-phone: 508px;
+$small-phone: 767px;
 
 @media (max-width: $breakpoint-tablet) {
   .card-container {
@@ -142,23 +143,12 @@ $small-phone: 508px;
 
 @media (max-width: $phone) {
   .search-bar {
-    width: 14rem;
-    position: absolute;
-    right: 4.5rem;
-    top: 1.4rem;
-    z-index: 10000;
+    width: 38.5rem;
   }
 }
 
 @media (max-width: $small-phone) {
-  .card-container {
-    margin-top: 4.8rem;
-  }
   .search-bar {
-    width: 13rem;
-    position: absolute;
-    right: .5rem;
-    top: 6rem;
-    z-index: 10000;
+    width: 18rem;
   }
 }

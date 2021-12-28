@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 import Search from './Search';
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import cache from '../cache.js';
 import getCurrentDateTime from '../CurrentDateTime';
@@ -18,6 +19,7 @@ class Dashboard extends Component {
   }
   // TODO: to reset back to default params, create button to clear cache (cache = {})
   componentDidMount = () => {
+    console.log('cache', cache);
     if (cache.searchInput === undefined || cache.searchInput === null) {
       const defaultObject = {
         city: this.props.user.defaultCity,
@@ -32,8 +34,15 @@ class Dashboard extends Component {
 
   setSearchState = (searchInput) => {
     cache.searchInput = searchInput;
+    console.log('cache', cache);
+
     console.log('setCurrentState cache', cache.searchInput);
     this.setState({ searchInput: searchInput }, () => this.getEvents(this.state.searchInput));
+  }
+
+  resetSearchState = () => {
+    console.log('cache', cache);
+    cache.searchInput = {};
   }
 
   getEvents = async (searchObject) => {
@@ -64,10 +73,11 @@ class Dashboard extends Component {
   render() {
     return (
       <Container className="card-container">
+        <Button onClick={this.resetSearchState}>reset</Button>
         <h1>Events in {this.state.searchInput.city ? this.state.searchInput.city.toUpperCase() : this.props.user.defaultCity.toUpperCase()}!</h1>
         <Search user={this.props.user} setSearchState={this.setSearchState} />
         {this.state.events.length > 0 &&
-          <Row sm={1} md={2} lg={5}>
+          <Row md={3} lg={5}>
             {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} showModal={this.props.showModal} />)}
           </Row>}
       </Container>
