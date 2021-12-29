@@ -43,7 +43,7 @@ class Profile extends Component {
           <hr></hr>
         <Container className="d-flex justify-content-center pt-5">
           
-        <Card style={{ minWidth: '500px', maxWidth: '75%', boxShadow: '3px 3px 2px 2px #0000003f', fontSize: '1.2em' }}>
+        <Card style={{ minWidth: '350px', maxWidth: '75%', boxShadow: '3px 3px 2px 2px #0000003f', fontSize: '1.2em' }}>
           <Card.Header style={{ 
                 textAlign: 'center', 
                 fontSize: '1.8em', 
