@@ -20,7 +20,11 @@ class Dashboard extends Component {
   
   componentDidMount = () => {
     console.log('Cache when component mounts: ', cache.searchInput);
-    if (cache.searchInput === undefined || cache.searchInput === null || cache.searchInput === {}) {
+    if (cache.searchInput && Object.keys(cache.searchInput).length > 0) {
+      console.log('Cache full on mount, calling get events with cache')
+      this.getEvents(cache.searchInput)
+    } // gets previous searchObject from cache
+    else {
       console.log('Cache empty on mount, calling get events with default')
       const defaultObject = {
         city: this.props.user.defaultCity,
@@ -28,10 +32,7 @@ class Dashboard extends Component {
         date: getCurrentDateTime()
       }
       this.setState({ searchInput: defaultObject }, () => this.getEvents(this.state.searchInput))
-    } else {
-      console.log('Cache full on mount, calling get events with cache')
-      this.getEvents(cache.searchInput)
-    } // gets previous searchObject from cache
+    }
   }
 
   setSearchState = (searchInput) => {
