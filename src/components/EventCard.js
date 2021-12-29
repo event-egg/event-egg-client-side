@@ -45,18 +45,6 @@ class EventCard extends Component {
 
   // add date param back to use new Date() method
   formatTime = (time) => {
-    /*
-    let dateTime = `${date}T${time}Z`;
-    console.log('this.props.event.localTime', this.props.event.localTime)
-    console.log('dateTime: ', dateTime);
-    // new Date() assumes given time is in UTC
-    let dateObj = new Date(dateTime);
-    console.log('dateObj: ', dateObj);
-    let formattedTime = dateObj.toLocaleTimeString('en-US', { timeZone: 'PST', timeZoneName: 'short', hour12: true, hour: '2-digit', minute: '2-digit' });
-    console.log('formattedTime: ', formattedTime);
-    return formattedTime;
-    */
-
     // adapted from https://medium.com/front-end-weekly/how-to-convert-24-hours-format-to-12-hours-in-javascript-ca19dfd7419d
     let hour = time.slice(0, 2);
     let amPm = hour >= 12 ? 'pm' : 'am';
@@ -105,7 +93,7 @@ class EventCard extends Component {
           }}>
             <Row>
               <Col >
-                <h5 style={{ fontSize: '12px' }}>{this.formatDate(this.props.event.localDate)} {this.formatTime(this.props.event.localTime)}</h5>
+                <h5 style={{ fontSize: '14px', fontWeight: 'bold' }}>{this.formatDate(this.props.event.localDate)} - {this.formatTime(this.props.event.localTime)}</h5>
               </Col>
             </Row>
             <Row>
