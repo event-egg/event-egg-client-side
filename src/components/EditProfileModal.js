@@ -70,7 +70,7 @@ class EditProfileModal extends Component {
                   <Button className='mx-3 px-5' variant="outline-primary" style={{ backgroundColor: "#fbf8cc", fontSize: '1.4em', fontWeight: 'bold'}}  type='submit'>Update</Button>
                 </Col>
                 <Col className='text-center'>
-                  <Button className='mx-3 px-5' variant="outline-secondary" style={{ backgroundColor: "#90dbf4", fontSize: '1.4em', fontWeight: 'bold'}} variant="secondary" onClick={() => this.props.closeModal('profile')}>Close</Button>
+                  <Button className='mx-3 px-5' variant="outline-secondary" style={{ backgroundColor: "#90dbf4", fontSize: '1.4em', fontWeight: 'bold'}} onClick={() => this.props.closeModal('profile')}>Close</Button>
                 </Col>
               </Row>
             </Form>
