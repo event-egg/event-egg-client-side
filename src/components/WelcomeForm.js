@@ -45,12 +45,12 @@ class WelcomeForm extends Component {
       <Container>
         <Form onSubmit={this.handleWelcomeSubmit}>
           <Form.Group className="my-3" controlId="city" >
-            <Form.Label style={{fontSize: '1.4em'}}>City</Form.Label>
+            <Form.Label style={{fontSize: '1.4em', fontWeight: 'bold'}}>City:</Form.Label>
             <Form.Control type="text" placeholder="city" />
           </Form.Group>
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
-            <Form.Label style={{fontSize: '1.4em'}} >Interests</Form.Label>
+            <Form.Label style={{fontSize: '1.4em', fontWeight: 'bold'}} >Tell us some of your interests:</Form.Label>
               <Row xs={2} className='ps-4' >
               {
                 eventCategories.map(category => {
@@ -71,12 +71,12 @@ class WelcomeForm extends Component {
               </Row>
             </Form.Group>
           </fieldset>
-          <Row xs={2} sm={2}>
+          <Row xs={2}>
             <Col  className='text-center'>
-              <Button size='lg' className='m-3 px-5' variant="outline-primary" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='submit'>Submit</Button>
-            </Col>
+              <Button size='lg' className='mx-3 px-5' variant="outline-primary" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='submit'>Submit</Button>
+            </Col>z
             <Col className='text-center'>
-              <Button  size='lg' className='m-3 px-5' variant="outline-danger" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='skip'>Skip</Button>
+              <Button  size='lg' className='mx-3 px-5' variant="outline-danger" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='skip'>Skip</Button>
             </Col>
           </Row>
         </Form>
