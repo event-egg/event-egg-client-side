@@ -6,7 +6,6 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import cache from '../cache.js';
 import getCurrentDateTime from '../CurrentDateTime';
-// import capitalize from '../Capitalize';
 
 
 class Dashboard extends Component {
@@ -84,7 +83,6 @@ class Dashboard extends Component {
 
     function capitalize(string) {
       const wordRegex = /\w\S*/g;
-      console.log('Inside capitalize');
       const firstLetterRegex = /^\w/;
       string = string.trim().toLowerCase().replace(
         wordRegex, (word) => word.replace(
@@ -98,7 +96,7 @@ class Dashboard extends Component {
         <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f' }} >
           Hatch some plans in {this.state.searchInput.city ? 
           capitalize(this.state.searchInput.city) : 
-          capitalize(this.props.user.defaultCity)}
+          capitalize(this.props.user.defaultCity)}!
         </h1>
         <hr></hr>
         <Search user={this.props.user} setSearchState={this.setSearchState} resetSearchState={this.resetSearchState} />
