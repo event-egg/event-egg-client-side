@@ -46,7 +46,7 @@ class App extends Component {
       this.setState({ user: userFromDB.data }, () => {
         setTimeout(() => {
           this.setState({ isLoading: false });
-        }, 500); // <------- adjust this to adjust spinner time
+        }, 1500); // <------- adjust this to adjust spinner time
       });
     } catch (err) {
       console.log(err);
@@ -172,7 +172,8 @@ class App extends Component {
           <>
             {
               this.state.isLoading || this.props.auth0.isLoading ?
-                <Container style={{
+                <div 
+                style={{
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -191,7 +192,7 @@ class App extends Component {
                       color: "transparent"
                     }}/>
                   <span className="visually-hidden">Loading...</span>
-                </Container>
+                </div>
                 :
                 Object.keys(this.state.user).length === 0 ?
                   <Welcome createUser={this.createUser} /> :
