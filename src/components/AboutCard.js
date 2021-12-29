@@ -14,7 +14,9 @@ class AboutCard extends Component {
                 fontSize: '2.2em', 
                 fontWeight: 'bold', 
                 backgroundColor: '#98f5e1',
-                }}>{this.props.bio.name}</Card.Header>
+          }}>{this.props.bio.name}
+            <img src='./img/open-egg.png' alt='open egg icon' style={{ marginLeft: '1rem', marginBottom: '.5rem', width: '2rem' }} />
+          </Card.Header>
           <Card.Body>
             <Image roundedCircle className='px-5' fluid variant="top" style={{ width: '45rem' }} src={this.props.bio.image} />
                 <Card className='m-3' style={{boxShadow: '3px 3px 2px 2px #0000003f'}}>

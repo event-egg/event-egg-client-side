@@ -23,7 +23,7 @@ const aboutUsArray = [
   {
     name: "Daniel Jackson",
     image: "./img/daniel.png",
-    about: "Software developer and Veteran of the United States Marine Corps with background in data analysis, project management, and linguistics. Passionate about using code to maximize efficiency while developing creative, customer-focused solutions and highly team oriented and result driven.",
+    about: "Software developer and Veteran of the United States Marine Corps with background in data analysis, project management, and linguistics. Highly team oriented and result driven, and passionate about using code to maximize efficiency while developing creative, customer-focused solutions.",
     githubLink: "https://www.github.com/daniel-jacks",
     linkedinLink: "https://www.linkedin.com/in/daniel-jacob-jackson"
   }
