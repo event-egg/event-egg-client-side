@@ -11,7 +11,7 @@ const eventCategories = [
   "Country",
   "Jazz",
   "Dance",
-  "Classical",
+  "Classical Music",
   "Children's Theatre",
   "Theatre",
   "Sports",
