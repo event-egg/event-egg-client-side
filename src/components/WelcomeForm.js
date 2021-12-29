@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import WelcomeSubmitBtn from './WelcomeSubmitBtn';
-// import Col from 'react-bootstrap/Col';
-// import Row from 'react-bootstrap/Row';
 import { withAuth0 } from '@auth0/auth0-react';
 import eventCategories from '../eventCategories.js'
+import { Col, Container, Row } from 'react-bootstrap';
 
 
 // Basic outline of form
@@ -44,59 +42,45 @@ class WelcomeForm extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <Form onSubmit={this.handleWelcomeSubmit}>
-          <Form.Group className="mb-3" controlId="city" >
-            <Form.Label>City</Form.Label>
+          <Form.Group className="my-3" controlId="city" >
+            <Form.Label style={{fontSize: '1.4em', fontWeight: 'bold'}}>City:</Form.Label>
             <Form.Control type="text" placeholder="city" />
           </Form.Group>
           <fieldset>
             <Form.Group className="mb-3" controlId="interests" >
-              <Form.Label>Interests</Form.Label>
+            <Form.Label style={{fontSize: '1.4em', fontWeight: 'bold'}} >Tell us some of your interests:</Form.Label>
+              <Row xs={2} className='ps-4' >
               {
                 eventCategories.map(category => {
                 let nonAlphaChars = /\W/;
                 let id = category.toLowerCase().replace(nonAlphaChars, '');
-                  return (<Form.Check
-                    key={id}
-                    type="checkbox"
-                    label={category}
-                    name="interestCheckboxes"
-                    id={id}
-                  />
+                  return (
+                  <Col key={id} style={{fontSize: '1.2em'}}>
+                    <Form.Check
+                      type="checkbox"
+                      label={category}
+                      name="interestCheckboxes"
+                      id={id}
+                    />             
+                  </Col>
                   )} 
                 )
               }
-              {/* <Form.Check
-                type="checkbox"
-                label="music"
-                name="interestCheckboxes"
-                id="music"
-              />
-              <Form.Check
-                type="checkbox"
-                label="coffee"
-                name="interestCheckboxes"
-                id="coffee"
-              />
-              <Form.Check
-                type="checkbox"
-                label="theatre"
-                name="interestCheckboxes"
-                id="theatre"
-              />
-              <Form.Check
-                type="checkbox"
-                label="nightlife"
-                name="interestCheckboxes"
-                id="nightlife"
-              /> */}
+              </Row>
             </Form.Group>
           </fieldset>
-          <Button type='submit' name='submit' >Submit</Button>
-          <Button type='submit' name='skip'>Skip</Button>
+          <Row xs={2}>
+            <Col  className='text-center'>
+              <Button size='lg' className='mx-3 px-5' variant="outline-primary" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='submit'>Submit</Button>
+            </Col>
+            <Col className='text-center'>
+              <Button  size='lg' className='mx-3 px-5' variant="outline-danger" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='skip'>Skip</Button>
+            </Col>
+          </Row>
         </Form>
-      </div>
+      </Container>
     );
   }
 }
