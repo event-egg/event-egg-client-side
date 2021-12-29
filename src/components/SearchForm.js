@@ -13,12 +13,11 @@ class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('form Date: ', e.target.date.value);
+
     // creates a variable to represent the current date/time as backup value
     const currentDateTime = getCurrentDateTime();
-
     const interests = e.target.interests.value;
-    
+    console.log('form Date: ', e.target.date.value, 'form Date: ', currentDateTime);
     const searchObject = {
       city: e.target.city.value || this.props.user.defaultCity,
       interests: interests.length > 0 ? [interests] : this.props.user.defaultInterests,
@@ -40,28 +39,6 @@ class SearchForm extends Component {
             <Form.Control id="date" type="date" />
             <Form.Label>City</Form.Label>
             <Form.Control id="city" type="text" placeholder={this.props.user.defaultCity || 'Seattle'} />
-
-            {/* Seems unnecessary since this functionality is already present in the form with fewer clicks required. 
-            <Form.Check
-              onChange={() => this.setState({ showPreferences: false })}
-              type="radio"
-              label="Use My Preferences"
-              name="searchRadio"
-              id="defaultPreferences"
-            />
-            <Form.Check
-              onChange={() => this.setState({ showPreferences: true })}
-              type="radio"
-              label="Select New Preferences"
-              name="searchRadio"
-              id="newPreferences"
-            />
-            {this.state.showPreferences &&
-              <>
-                <Form.Label>New Search</Form.Label>
-                <Form.Control id="newSearch" type="text" placeholder='explore new things...' />
-              </>
-            } */}
           </Form.Group>
           <Button type="submit" name='submit'>Let's get crackin'!</Button>
           <Button style={{ marginLeft: "1rem" }} onClick={this.props.resetSearchState}>Reset search</Button>
