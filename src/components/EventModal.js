@@ -12,9 +12,17 @@ class EventModal extends Component {
   }
 
   formatDate = (date) => {
-    let formatedDate = new Date(date);
-    // const month = date.slice(5, 7);
-    return formatedDate.toDateString();
+    let formattedDate = new Date(date);
+    let day = date.slice(8, 10);
+    day[0] === '0' && (day = day.slice(1, 2))
+    console.log('month Modal: ', day)
+    let dateStr = formattedDate.toDateString();
+    let newDate = `${dateStr.slice(0, -8)} ${day} ${dateStr.slice(-4, dateStr.length)}`;
+
+    console.log('dateStr Modal: ', dateStr);
+    console.log('newDate Modal: ', newDate);
+
+    return newDate;
   }
 
   formatTime = (time) => {
