@@ -22,10 +22,16 @@ class EventModal extends Component {
           <Modal.Body className="modal-body">
             {this.props.event.id &&
               <>
-                <img src={this.props.event.image.url} alt={this.props.event.name} className="modal-image" />
+                <img src={this.props.event.image.url} alt={this.props.event.name} className="modal-image mx-0" style={{
+                  width: '100%',
+                  // boxSizing: 'border-box',
+                }} />
                 <br />
                 <div
-                  className="modal-description">
+                  className="modal-description" style={{
+                    overflowWrap: 'break-word',
+                    textAlign: 'justify'
+                  }}>
                   {this.props.event.description === 'Undefined' ? '' : this.props.event.description}
                 </div>
                 <br />

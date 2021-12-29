@@ -31,8 +31,19 @@ class EventCard extends Component {
   render() {
     return (
 
-      <Card style={{ width: '18rem', boxShadow: '3px 3px 2px 2px #0000003f' }} border="dark" className='m-3 card-styled' >
-        <Card.Header className='mx-3 pt-1 mt-1' style={{ overflow: 'hidden', fontWeight: 'bold', textOverflow: 'ellipsis', whiteSpace: 'nowrap',  backgroundColor: '#8eecf5', border: '1px solid black', boxShadow: '1px 1px 2px 2px #0000003f'}}>
+      <Card style={{ 
+        width: '18rem', 
+        boxShadow: '3px 3px 2px 2px #0000003f' 
+      }} border="dark" className='m-3 card-styled' >
+        <Card.Header className='mx-3 pt-1 mt-1' style={{ 
+          overflow: 'hidden', 
+          fontWeight: 'bold', 
+          textOverflow: 'ellipsis', 
+          whiteSpace: 'nowrap',  
+          backgroundColor: '#8eecf5', 
+          border: '1px solid black', 
+          boxShadow: '1px 1px 2px 2px #0000003f'
+        }}>
         {this.props.event.name}
         </Card.Header>
 
