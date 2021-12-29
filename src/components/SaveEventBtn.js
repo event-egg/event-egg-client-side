@@ -12,7 +12,7 @@ class SaveEventBtn extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClick} className="save-button">Save Event</Button>
+        <Button onClick={this.handleClick} className="save-button p-1">Save Event</Button>
       </div>
     );
   }

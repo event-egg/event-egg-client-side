@@ -78,7 +78,6 @@ $gunmetal: #293241ff;
     overflow: hidden;
   }
   .save-button {
-    position: absolute;
     bottom: 2rem;
     left: 2rem;
     background-color: $celadon;
@@ -86,13 +85,9 @@ $gunmetal: #293241ff;
     border: solid 1px $baby-blue-eyes;
     &:hover {
       background-color: $magic-mint;
-      color: black;
-      border: solid 1.5px $gunmetal;
-      font-size: 1.01em;
     }
   }
   .remove-button {
-    position: absolute;
     bottom: 2rem;
     left: 2rem;
     background-color: $pink-lavender;
@@ -100,7 +95,6 @@ $gunmetal: #293241ff;
     border: solid 1px $baby-blue-eyes;
     &:hover {
       background-color: $mauve;
-      color: black;
       border: solid 1.5px $gunmetal;
       font-size: 2rem;
       font-size: 1.01em;
@@ -108,15 +102,13 @@ $gunmetal: #293241ff;
   }
 
   .more-info-button {
-    position: absolute;
     bottom: 2rem;
     left: 9rem;
     background-color: $baby-blue-eyes;
     color: black;
     border: solid 1px $pink-lavender;
     &:hover {
-      background-color: $mauve;
-      color: black;
+      background-color: $baby-pink;
       border: solid 1.5px $gunmetal;
       font-size: 2rem;
       font-size: 1.01em;
