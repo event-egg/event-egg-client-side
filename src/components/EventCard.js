@@ -21,7 +21,6 @@ class EventCard extends Component {
     this.setState({ type: type });
   }
 
-
   // show modal when user clicks event image
   handleMoreInfoClick = () => {
     console.log('event type: ', this.props.type)
@@ -32,7 +31,8 @@ class EventCard extends Component {
     return (
 
       <Card style={{ 
-        width: '18rem', 
+        width: '18rem',
+        height: '24rem', 
         boxShadow: '3px 3px 2px 2px #0000003f' 
       }} border="dark" className='m-3 card-styled' >
         <Card.Header className='mx-3 pt-1 mt-1' style={{ 
@@ -62,6 +62,11 @@ class EventCard extends Component {
                 boxShadow: '1px 1px 2px 2px #0000003f',
                 border: '1px solid grey'
                 }}>
+                  <Row> 
+                    <Col>
+                      <h5>{this.props.event.localDate}</h5>
+                    </Col>
+                  </Row>
                   <Row>
                     <Col>
                       {this.state.type === 'newEvent' ?

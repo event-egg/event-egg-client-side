@@ -24,7 +24,6 @@ class EventModal extends Component {
               <>
                 <img src={this.props.event.image.url} alt={this.props.event.name} className="modal-image mx-0" style={{
                   width: '100%',
-                  // boxSizing: 'border-box',
                 }} />
                 <br />
                 <div
