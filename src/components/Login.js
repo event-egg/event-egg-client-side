@@ -13,12 +13,11 @@ function LoginButton(props) {
 
 class Login extends Component {
   render() {
-    document.body.style.overflow = "hidden"
     return (
-      <Container style={{ height: '100vh', overflow: 'hidden', background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)' }} fluid>
+      <Container style={{height: '100vh', background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)' }} fluid>
         <Col className='p-5 d-flex justify-content-between flex-column pt-5 mb-0' style={{ height: '100%' }}>
           <Container  className="d-flex justify-content-around mt-5 pb-5" fluid>
-          <h1 style={{minWidth: '30%', textDecoration: 'underline'}} className='text-center text-nowrap display-1' fluid><strong>Event Egg</strong></h1>
+            <h1 style={{ minWidth: '30%', textDecoration: 'underline' }} className='heading-style text-center text-nowrap display-1' fluid><strong>Event Egg</strong></h1>
           </Container>
           <Container className="d-flex justify-content-around m-0 p-0" fluid>
             <Image style={{minWidth: '300px'}} src='./img/white-egg8bit.png' fluid/>
