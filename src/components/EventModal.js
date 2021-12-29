@@ -13,6 +13,7 @@ class EventModal extends Component {
 
   formatDate = (date) => {
     let formatedDate = new Date(date);
+    // const month = date.slice(5, 7);
     return formatedDate.toDateString();
   }
 

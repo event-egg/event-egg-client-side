@@ -29,8 +29,13 @@ class EventCard extends Component {
 
   formatDate = (date) => {
     // new Date() assumes given time is in UTC
-    let formattedDate = new Date(date);
-    return formattedDate.toDateString();
+    console.log(date);
+    const year = date.slice(0, 4);
+    const month = date.slice(5, 7);
+    const day = date.slice(8, 10);
+    console.log(day);
+    let formattedDate = `${month}-${day}-${year}`;
+    return formattedDate;
   }
 
   // converts ISO date/time string to local time
@@ -49,6 +54,7 @@ class EventCard extends Component {
     return formattedTime;
     */
 
+    // adapted from https://medium.com/front-end-weekly/how-to-convert-24-hours-format-to-12-hours-in-javascript-ca19dfd7419d
     let hour = time.slice(0, 2);
     let amPm = hour >= 12 ? 'pm' : 'am';
     hour = (hour % 12) || 12;
