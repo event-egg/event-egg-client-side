@@ -31,8 +31,8 @@ class AboutCard extends Component {
                 backgroundColor: '#cfbaf0',
                 }}>
             <Row>
-              <Col className='text-center m-2'><Button variant="dark" style={{ fontSize: '1.2em',  boxShadow: '3px 3px 2px 2px #0000003f' }} onClick={() => this.props.bio.githubLink()}>GitHub</Button></Col>
-              <Col className='text-center m-2'><Button variant="outline-info" style={{ fontSize: '1.2em', backgroundColor: 'white',  boxShadow: '3px 3px 2px 2px #0000003f'}} onClick={() => this.props.bio.linkedinLink()}>LinkedIn</Button></Col>
+              <Col className='text-center m-2'><Button variant="dark" style={{ fontSize: '1.2em',  boxShadow: '3px 3px 2px 2px #0000003f' }} href={this.props.bio.githubLink}>GitHub</Button></Col>
+              <Col className='text-center m-2'><Button variant="outline-info" style={{ fontSize: '1.2em', backgroundColor: 'white',  boxShadow: '3px 3px 2px 2px #0000003f'}} href={this.props.bio.linkedinLink}>LinkedIn</Button></Col>
             </Row>        
           </Card.Footer>
         </Card>
