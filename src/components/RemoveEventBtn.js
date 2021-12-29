@@ -12,7 +12,7 @@ class RemoveEventBtn extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleRemoveClick} className="remove-button" >Remove</Button>
+        <Button onClick={this.handleRemoveClick} className="remove-button p-1" >Remove</Button>
       </div>
     );
   }
