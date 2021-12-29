@@ -1,9 +1,7 @@
 import WelcomeForm from './WelcomeForm';
-// import WelcomeSubmitBtn from './WelcomeSubmitBtn';
-// import WelcomeSkipBtn from './WelcomeSkipBtn';
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
-import { Image, Row, Col } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 
 class Welcome extends Component {

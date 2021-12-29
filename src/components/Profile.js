@@ -68,10 +68,10 @@ class Profile extends Component {
             <Container>
                 <Row xs={2}>
                 <Col  className='text-center'>
-                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#8eecf5", fontSize: '1.1em', fontWeight: 'bold'}} variant="outline-primary" onClick={() => this.showModal('profile')} >Edit Profile</Button>
+                <Button size="lg" style={{ boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#8eecf5", fontSize: '1.1em', fontWeight: 'bold'}} variant="outline-primary" onClick={() => this.showModal('profile')} >Edit Profile</Button>
                 </Col>
                 <Col className='text-center'>
-                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#f1c0e8", fontSize: '1.1em', fontWeight: 'bold'}}  variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+                <Button size="lg" style={{ boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#f1c0e8", fontSize: '1.1em', fontWeight: 'bold'}}  variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
                 </Col>
               </Row>
             </Container>
