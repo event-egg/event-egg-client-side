@@ -139,7 +139,63 @@ h1 {
       font-size: 1em;
     }
   }
+}
 
+.event-modal {
+  img {
+    // height: 13rem;
+    border: solid 1.5px $gunmetal;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    box-shadow: 3px 3px 2px 2px#0000003f;
+  }
+  // image still off-center when there is description
+  .modal-body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+  }
+  a {
+    color: $gunmetal;
+    font-weight: bold;
+    background-color: $magic-mint;
+    padding: .2rem;
+    border: solid 1px $baby-blue-eyes;
+    text-decoration: none;
+  }
+  .modal-title {
+    text-align: center;
+    background-color: #8eecf5;
+    padding: .2rem;
+    box-shadow: 3px 3px 2px 2px#0000003f;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .modal-description {
+    margin-left: auto;
+    margin-right: auto;
+    
+    // padding-left: 20px;
+    // padding-right: 20px;
+  }
+  .modal-address {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .close-modal-button {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $pink-lavender;
+    &:hover {
+      background-color: $mauve;
+      border: solid 1.5px $gunmetal;
+      font-size: 2rem;
+      font-size: 1.01em;
+  }
+}
 }
 
 .App-link {
