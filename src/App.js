@@ -11,6 +11,7 @@ import About from './components/About';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner'
 import EventModal from './components/EventModal';
+import cache from './cache.js';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
@@ -161,7 +162,12 @@ class App extends Component {
     const { getAccessTokenSilently } = this.props.auth0;
     getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
   }
-
+  resetCache = () => {
+    console.log('cache BEFORE reset:', cache.searchInput);
+    cache.searchInput = {};
+    console.log('cache AFTER reset:', cache.searchInput);
+  }
+    
   render() {
 
     return (
@@ -200,7 +206,7 @@ class App extends Component {
                     <Routes>
                       <Route path="/" element={<Dashboard auth0={this.props.auth0} user={this.state.user} searchInput={this.state.searchInput} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} showModal={this.showModal} closeModal={this.closeModal} />} />
                       <Route path="/myEvents" element={<MyEvents auth0={this.props.auth0} user={this.state.user} deleteEvent={this.deleteEvent} showModal={this.showModal} closeModal={this.closeModal} />} />
-                      <Route path="/profile" element={<Profile user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
+                      <Route path="/profile" element={<Profile resetCache={this.resetCache} user={this.state.user} updateUser={this.updateUser} deleteUser={this.deleteUser} />} />
                       <Route path="/about" element={<About />} />
                     </Routes>
                     <EventModal modalIsShown={this.state.modalIsShown} closeModal={this.closeModal} event={this.state.modalEvent} user={this.state.user} saveEvent={this.saveEvent} deleteEvent={this.deleteEvent} />

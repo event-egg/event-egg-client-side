@@ -70,7 +70,7 @@ class Profile extends Component {
             </Container>
             </Card.Body>
             <Container>
-              <EditProfileModal show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
+              <EditProfileModal resetCache={this.props.resetCache} show={this.state.showEditModal} closeModal={this.closeModal} user={this.props.user} updateUser={this.props.updateUser} />
               <DeleteProfileModal show={this.state.showDeleteModal} closeModal={this.closeModal} user={this.props.user} deleteUser={this.props.deleteUser} />
             </Container>
         </Card>

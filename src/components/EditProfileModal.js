@@ -22,6 +22,7 @@ class EditProfileModal extends Component {
       email: this.props.user.email,
     }
     this.props.updateUser(user, this.props.user._id);
+    this.props.resetCache();
     this.props.closeModal('profile');
   }
 

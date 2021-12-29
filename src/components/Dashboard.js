@@ -7,7 +7,6 @@ import axios from 'axios';
 import cache from '../cache.js';
 import getCurrentDateTime from '../CurrentDateTime';
 
-
 class Dashboard extends Component {
 
   constructor(props) {
@@ -15,10 +14,10 @@ class Dashboard extends Component {
     this.state = {
       events: "",
       searchInput: {},
-      error: false
+      error: false,
     }
   }
-  // TODO: to reset back to default params, create button to clear cache (cache = {})
+  
   componentDidMount = () => {
     console.log('Cache when component mounts: ', cache.searchInput);
     if (cache.searchInput === undefined || cache.searchInput === null || cache.searchInput === {}) {
