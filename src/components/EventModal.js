@@ -11,6 +11,23 @@ class EventModal extends Component {
     this.props.closeModal();
   }
 
+  formatDate = (date) => {
+    let formatedDate = new Date(date);
+    return formatedDate.toDateString();
+  }
+
+  formatTime = (time) => {
+
+    // adapted from https://medium.com/front-end-weekly/how-to-convert-24-hours-format-to-12-hours-in-javascript-ca19dfd7419d
+    let hour = time.slice(0, 2);
+    let amPm = hour >= 12 ? 'pm' : 'am';
+    hour = (hour % 12) || 12;
+    let minutes = time.slice(3, 5);
+    let formattedTime = `${hour}:${minutes} ${amPm}`;
+    console.log('formattedTime: ', formattedTime);
+    return formattedTime;
+  }
+
   render() {
     return (
 
@@ -36,8 +53,8 @@ class EventModal extends Component {
                 <br />
                 <div className="modal-address">
                   <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
-                  {this.props.event.localDate} <br />
-                  {this.props.event.localTime} <br />
+                  {this.formatDate(this.props.event.localDate)} <br />
+                  {this.formatTime(this.props.event.localTime)} <br />
                   {this.props.event.address.venueName} <br />
                   {this.props.event.address.street.line1} <br />
                   {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
