@@ -16,6 +16,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { withAuth0 } from '@auth0/auth0-react';
+import { Container } from 'react-bootstrap';
 
 class App extends Component {
 
@@ -171,9 +172,26 @@ class App extends Component {
           <>
             {
               this.state.isLoading || this.props.auth0.isLoading ?
-                <Spinner animation="border" role="status">
+                <Container style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100vh",
+                  background: "linear-gradient(90deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)",
+                }}>
+                  <Spinner
+                    as="img"
+                    src="./img/white-egg8bit.png"
+                    size="xl"
+                    animation="border"
+                    role="status" 
+                    style={{
+                      width: "25vh",
+                      height: "25vh",
+                      color: "transparent"
+                    }}/>
                   <span className="visually-hidden">Loading...</span>
-                </Spinner>
+                </Container>
                 :
                 Object.keys(this.state.user).length === 0 ?
                   <Welcome createUser={this.createUser} /> :
