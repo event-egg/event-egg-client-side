@@ -29,8 +29,8 @@ class EditProfileModal extends Component {
   render() {
     return (
       <div>
-        <Modal  style={{background: 'linear-gradient(45deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)' }} className="py-5" show={this.props.show} onHide={() => this.props.closeModal('profile')}>
-          <Modal.Header>
+        <Modal autoFocus  className="py-5" show={this.props.show} onHide={() => this.props.closeModal('profile')}>
+          <Modal.Header style={{background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)' }}>
             <Modal.Title style={{fontSize: '1.6em', fontWeight: 'bold'}}>Edit Profile</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -42,7 +42,7 @@ class EditProfileModal extends Component {
               <fieldset>
                 <Form.Group className="mb-3" controlId="interests" >
                   <Form.Label style={{fontSize: '1.4em', fontWeight: 'bold'}}>Interests</Form.Label>
-                  <Row xs={2} className='ps-4' >
+                  <Row xs={2} className='px-2' >
                     {
                       eventCategories.map(category => {
                       let nonAlphaChars = /\W/;
@@ -54,6 +54,7 @@ class EditProfileModal extends Component {
                             label={category}
                             name="interestCheckboxes"
                             id={id}
+                            defaultChecked={this.props.user.defaultInterests.includes(id)}
                           className='m-2'
                           />             
                         </Col>
@@ -63,6 +64,7 @@ class EditProfileModal extends Component {
               </Row>
                 </Form.Group>
               </fieldset>
+              <div style={{border: '1px solid lightgrey'}} className="mb-3" /> 
               <Row xs={2}>
                 <Col  className='text-center'>
                   <Button className='mx-3 px-5' variant="outline-primary" style={{ backgroundColor: "#fbf8cc", fontSize: '1.4em', fontWeight: 'bold'}}  type='submit'>Update</Button>

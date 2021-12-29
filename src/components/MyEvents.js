@@ -27,14 +27,14 @@ class MyEvents extends Component {
                 textAlign: 'center', 
                 fontSize: '1.6em', 
                 fontWeight: 'bold', 
-                backgroundColor: '#a3c4f3',
+                background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)'
                 }}>Uh Oh!</Card.Header>
               <Card.Body >
                 <Card.Text style={{ textAlign: 'center', fontSize: '1.4em'}} className='py-auto' >
                   Looks like you don't have any saved events here yet! Why not go to your Dashboard and add some events that look promising?
                 </Card.Text>
               </Card.Body>
-              <Card.Footer className='text-center'>
+              <Card.Footer className='text-center' style={{background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)'}}>
               <Image
                 alt=""
                 src='./img/white-egg8bit.png'
