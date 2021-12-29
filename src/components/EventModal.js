@@ -26,18 +26,22 @@ class EventModal extends Component {
           <Modal.Body className="modal-body">
             {this.props.event.id &&
               <>
-                <div className="modal-image-div">
-                  <img src={this.props.event.image.url} alt={this.props.event.name} className="modal-image" /> <br />
+                <img src={this.props.event.image.url} alt={this.props.event.name} className="modal-image" />
+                <br />
+                <div
+                  className="modal-description">
                   {this.props.event.description === 'Undefined' ? '' : this.props.event.description}
                 </div>
                 <br />
-                <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
-                {this.props.event.localDate} <br />
-                {this.props.event.localTime} <br />
-                {this.props.event.address.venueName} <br />
-                {this.props.event.address.street.line1} <br />
-                {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
-                {this.props.event.address.city}, {this.props.event.address.state.stateCode}, {this.props.event.address.zip}
+                <div className="modal-address">
+                  <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
+                  {this.props.event.localDate} <br />
+                  {this.props.event.localTime} <br />
+                  {this.props.event.address.venueName} <br />
+                  {this.props.event.address.street.line1} <br />
+                  {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
+                  {this.props.event.address.city}, {this.props.event.address.state.stateCode}, {this.props.event.address.zip}
+                </div>
               </>}
           </Modal.Body>
           <Modal.Footer >

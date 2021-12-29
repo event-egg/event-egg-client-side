@@ -114,7 +114,6 @@ $gunmetal: #293241ff;
       font-size: 1.01em;
     }
   }
-
 }
 
 .event-modal {
@@ -125,14 +124,13 @@ $gunmetal: #293241ff;
     margin-right: auto;
     margin-bottom: 1rem;
     box-shadow: 3px 3px 2px 2px#0000003f;
-
   }
-
+  // image still off-center when there is description
   .modal-body {
     margin-left: auto;
     margin-right: auto;
+    max-width: 80%;
   }
-
   a {
     color: $gunmetal;
     font-weight: bold;
@@ -146,10 +144,23 @@ $gunmetal: #293241ff;
     background-color: #8eecf5;
     padding: .2rem;
     box-shadow: 3px 3px 2px 2px#0000003f;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .modal-btn-div {
-    align-items: center;
+
+  .modal-description {
+    margin-left: auto;
+    margin-right: auto;
+    
+    // padding-left: 20px;
+    // padding-right: 20px;
   }
+
+  .modal-address {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
   .close-modal-button {
     color: black;
     margin-left: auto;
