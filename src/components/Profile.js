@@ -8,7 +8,6 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Badge from 'react-bootstrap/Badge'
 import Stack from 'react-bootstrap/Stack'
 import Container from 'react-bootstrap/Container'
-import Image from 'react-bootstrap/Image'
 
 
 
