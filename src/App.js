@@ -164,7 +164,7 @@ class App extends Component {
   }
 
   render() {
-
+    
     return (
       <>
         {!(this.props.auth0.isAuthenticated || this.props.auth0.isLoading) ?
@@ -178,7 +178,9 @@ class App extends Component {
                   justifyContent: "center",
                   alignItems: "center",
                   height: "100vh",
+                  width: "100vw",
                   background: "linear-gradient(90deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)",
+                  position: 'fixed'
                 }}>
                   <Spinner
                     as="img"
