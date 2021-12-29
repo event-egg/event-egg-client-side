@@ -74,7 +74,7 @@ class WelcomeForm extends Component {
           <Row xs={2}>
             <Col  className='text-center'>
               <Button size='lg' className='mx-3 px-5' variant="outline-primary" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='submit'>Submit</Button>
-            </Col>z
+            </Col>
             <Col className='text-center'>
               <Button  size='lg' className='mx-3 px-5' variant="outline-danger" style={{background: 'white', fontSize: '1.4em', fontWeight: 'bold'}} type='submit' name='skip'>Skip</Button>
             </Col>
