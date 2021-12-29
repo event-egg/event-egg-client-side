@@ -50,7 +50,7 @@ class App extends Component {
         }, 1500); // <------- adjust this to adjust spinner time
       });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     };
   }
 
@@ -111,7 +111,6 @@ class App extends Component {
   }
 
   saveEvent = async (user, event) => {
-    // console.log("User in save Event:", user);
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -130,7 +129,6 @@ class App extends Component {
   }
 
   deleteEvent = async (user, event) => {
-    // console.log("User in deleteEvent:", user);
     try {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
@@ -149,14 +147,11 @@ class App extends Component {
   }
 
   showModal = (event, eventType) => {
-    // console.log('showModal activated');
     this.setState({ modalIsShown: true, modalEvent: event });
   }
 
   closeModal = () => {
-    // console.log('closeModal activated');
     this.setState({ modalIsShown: false });
-    // !this.state.modalIsShown ? console.log('showModal state is false') : console.log('showModal state is true')
   }
 
   componentDidMount() {
@@ -164,13 +159,11 @@ class App extends Component {
     getAccessTokenSilently().then(token => this.getUserData()) //This function returns an auth token after successful log in, co-opting to call our getUserData funct. 
   }
   resetCache = () => {
-    console.log('cache BEFORE reset:', cache.searchInput);
     cache.searchInput = {};
-    console.log('cache AFTER reset:', cache.searchInput);
   }
-    
+
   render() {
-    
+
     return (
       <>
         {!(this.props.auth0.isAuthenticated || this.props.auth0.isLoading) ?
@@ -178,27 +171,27 @@ class App extends Component {
           <>
             {
               this.state.isLoading || this.props.auth0.isLoading ?
-                <div 
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100vh",
-                  width: "100vw",
-                  background: "linear-gradient(90deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)",
-                  position: 'fixed'
-                }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                    width: "100vw",
+                    background: "linear-gradient(90deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)",
+                    position: 'fixed'
+                  }}>
                   <Spinner
                     as="img"
                     src="./img/white-egg8bit.png"
                     size="xl"
                     animation="border"
-                    role="status" 
+                    role="status"
                     style={{
                       width: "25vh",
                       height: "25vh",
                       color: "transparent"
-                    }}/>
+                    }} />
                   <span className="visually-hidden">Loading...</span>
                 </div>
                 :

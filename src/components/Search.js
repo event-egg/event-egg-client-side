@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import SearchForm from './SearchForm';
 
-// To Do: Change Accordian toggle to magnifying glass
 
 class Search extends Component {
   render() {
@@ -12,7 +11,7 @@ class Search extends Component {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Search</Accordion.Header>
             <Accordion.Body>
-              <SearchForm user={this.props.user} setSearchState={this.props.setSearchState} resetSearchState={this.props.resetSearchState} /> 
+              <SearchForm user={this.props.user} setSearchState={this.props.setSearchState} resetSearchState={this.props.resetSearchState} />
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

@@ -6,7 +6,6 @@ import eventCategories from '../eventCategories.js'
 import { Col, Container, Row } from 'react-bootstrap';
 
 
-// Basic outline of form
 
 class WelcomeForm extends Component {
 

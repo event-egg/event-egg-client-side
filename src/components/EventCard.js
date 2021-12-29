@@ -3,13 +3,12 @@ import Card from 'react-bootstrap/Card';
 import SaveEventBtn from './SaveEventBtn';
 import RemoveEventBtn from './RemoveEventBtn';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 class EventCard extends Component {
 
-  // Constructor to create state
   constructor(props) {
     super(props);
     this.state = {
@@ -35,9 +34,6 @@ class EventCard extends Component {
     return newDate;
   }
 
-  // converts ISO date/time string to local time
-
-  // add date param back to use new Date() method
   formatTime = (time) => {
     // adapted from https://medium.com/front-end-weekly/how-to-convert-24-hours-format-to-12-hours-in-javascript-ca19dfd7419d
     let hour = time.slice(0, 2);

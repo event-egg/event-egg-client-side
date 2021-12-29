@@ -18,14 +18,12 @@ class SearchForm extends Component {
     // creates a variable to represent the current date/time as backup value
     const currentDateTime = getCurrentDateTime();
     const interests = e.target.interests.value;
-    console.log('form Date: ', e.target.date.value, 'form Date: ', currentDateTime);
     const searchObject = {
       city: e.target.city.value || this.props.user.defaultCity,
       interests: interests.length > 0 ? [interests] : this.props.user.defaultInterests,
       date: e.target.date.value ? `${e.target.date.value}T00:00:00` : currentDateTime
       // converts any e.target.date.value to proper form of 'YYYY-MM-DDTHH:mm:ss'
     }
-    console.log('handleSubmit searchObject: ', searchObject);
     this.props.setSearchState(searchObject);
   }
 

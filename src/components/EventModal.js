@@ -16,12 +16,8 @@ class EventModal extends Component {
     let formattedDate = new Date(date);
     let day = date.slice(8, 10);
     day[0] === '0' && (day = day.slice(1, 2))
-    console.log('month Modal: ', day)
     let dateStr = formattedDate.toDateString();
     let newDate = `${dateStr.slice(4, -8)} ${day} ${dateStr.slice(-4, dateStr.length)}`;
-
-    console.log('dateStr Modal: ', dateStr);
-    console.log('newDate Modal: ', newDate);
 
     return newDate;
   }
@@ -34,7 +30,6 @@ class EventModal extends Component {
     hour = (hour % 12) || 12;
     let minutes = time.slice(3, 5);
     let formattedTime = `${hour}:${minutes} ${amPm}`;
-    console.log('formattedTime: ', formattedTime);
     return formattedTime;
   }
 
@@ -60,18 +55,18 @@ class EventModal extends Component {
                   }}>
                   {this.props.event.description === 'Undefined' ? '' : this.props.event.description}
                 </div>
-                <div style={{border: '1px solid lightgrey'}} className="mb-3" /> 
+                <div style={{ border: '1px solid lightgrey' }} className="mb-3" />
                 <div className="modal-address">
                   <Container className='text-center'>
-                  <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
+                    <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
                   </Container>
-                  <div style={{border: '1px solid lightgrey'}} className="my-3" /> 
+                  <div style={{ border: '1px solid lightgrey' }} className="my-3" />
                   <Container className='text-center'>
-                  <strong>Date: </strong> {this.formatDate(this.props.event.localDate)}  
-                  <div className="my-3" /> 
-                  <strong>Time: </strong>{this.formatTime(this.props.event.localTime)}
+                    <strong>Date: </strong> {this.formatDate(this.props.event.localDate)}
+                    <div className="my-3" />
+                    <strong>Time: </strong>{this.formatTime(this.props.event.localTime)}
                   </Container>
-                  <div style={{border: '1px solid lightgrey'}} className="my-3" /> 
+                  <div style={{ border: '1px solid lightgrey' }} className="my-3" />
                   <Container className='text-center'>
                     {this.props.event.address.venueName} <br />
                     {this.props.event.address.street.line1} <br />

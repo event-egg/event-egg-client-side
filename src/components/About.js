@@ -1,8 +1,7 @@
-// import Button from 'react-bootstrap/Button';
 import React, { Component } from 'react';
 import AboutCard from './AboutCard';
 import aboutUsArray from '../AboutUsData';
-import { Row, Container} from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 
 
 
@@ -15,7 +14,7 @@ class About extends Component {
         <br style={{ color: 'black' }}></br>
         <br style={{ color: 'grey' }} />
         <Row sm={1} md={2} lg={2} xl={2}>
-            {aboutUsArray.length > 0 && aboutUsArray.map((bio, idx) => <AboutCard bio={bio} key={idx} />)}
+          {aboutUsArray.length > 0 && aboutUsArray.map((bio, idx) => <AboutCard bio={bio} key={idx} />)}
         </Row>
       </Container>
     );
