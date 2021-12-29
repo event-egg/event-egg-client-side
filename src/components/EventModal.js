@@ -15,10 +15,6 @@ class EventModal extends Component {
     return (
 
       < div >
-        {console.log('Modal rendered')}
-        {console.log('modalIsShown: ', this.props.modalIsShown)}
-        {console.log('modalEvent: ', this.props.event)}
-
         <Modal show={this.props.modalIsShown} onHide={() => this.handleClose()} className="event-modal">
           <Modal.Header>
             <Modal.Title>{this.props.event.name}</Modal.Title>

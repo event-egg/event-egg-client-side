@@ -3,6 +3,7 @@ import EventCard from './EventCard';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card'
+import Image from 'react-bootstrap/Image'
 
 
 // renders user's saved events
@@ -21,7 +22,7 @@ class MyEvents extends Component {
               <EventCard type="myEvent" event={event} key={event.id} deleteEvent={this.props.deleteEvent} user={this.props.user} showModal={this.props.showModal} />)}
           </Row> : 
           <Container className="d-flex justify-content-center pt-5">
-            <Card border="dark" style={{ width: '25rem',  height: '15rem', boxShadow: '3px 3px 2px 2px #0000003f'}} className='mx-auto'>
+            <Card border="dark" style={{ width: '25rem', boxShadow: '3px 3px 2px 2px #0000003f'}} className='mx-auto'>
               <Card.Header style={{ 
                 textAlign: 'center', 
                 fontSize: '1.6em', 
@@ -33,6 +34,14 @@ class MyEvents extends Component {
                   Looks like you don't have any saved events here yet! Why not go to your Dashboard and add some events that look promising?
                 </Card.Text>
               </Card.Body>
+              <Card.Footer className='text-center'>
+              <Image
+                alt=""
+                src='./img/white-egg8bit.png'
+                width="40"
+                height="40"
+              />
+              </Card.Footer>
             </Card>
           </ Container>
           }
