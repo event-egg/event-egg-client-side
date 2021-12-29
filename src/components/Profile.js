@@ -56,12 +56,14 @@ class Profile extends Component {
                 <ListGroupItem><strong>Email:</strong> {this.props.user.email}</ListGroupItem>
                 <ListGroupItem><strong>Location:</strong> {this.props.user.defaultCity}</ListGroupItem>
                 <ListGroupItem><strong>Interests:</strong> <br />
-                <Row xs={1} className='text-center'>
                   {
-                    this.props.user.defaultInterests.map(interest =>
-                      <Badge pill bg="info" text="light" className='m-1 p-2' key={interest}><span>{interest}</span></Badge>)
+                    this.props.user.defaultInterests.map((interest) =>
+                      <Badge pill bg="light" text="dark" className='m-1 p-2' key={interest} style={{
+                        background: 'linear-gradient(135deg, #CFBAF0 9%, #B9FBC0 52%, #90DBF4 100%)',
+                      }}>
+                        {interest} 
+                      </Badge>)
                     }
-                </Row>
                 </ListGroupItem>
               </ListGroup>  
               <div style={{border: '1px solid lightgrey'}} className="mb-3" />       
