@@ -11,6 +11,7 @@ class About extends Component {
     return (
       <Container className='mb-3'>
         <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f' }} >About Us</h1>
+        <hr />
         <br style={{ color: 'black' }}></br>
         <br style={{ color: 'grey' }} />
         <Row sm={1} md={2} lg={2} xl={2}>

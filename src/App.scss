@@ -10,6 +10,20 @@ $magic-mint: #98f5e1ff;
 $celadon: #b9fbc0ff;
 $gunmetal: #293241ff;
 
+@import url('https://fonts.googleapis.com/css2?family=Pushster&family=Rubik:wght@300&family=Yanone+Kaffeesatz&display=swap');
+$heading-font-family: 'Yanone Kaffeesatz', sans-serif;
+$body-font-family: 'Rubik', sans-serif;
+$logo-font-family: 'Pushter', sans-serf;
+$base-font-size: 18px;
+$base-font-weight: 400;
+// Logo: Pushster
+// Headers and Tagline: Yanone Kaffeesatz
+// Text: Rubik
+
+* {
+  font-family: $body-font-family;
+}
+
 .App {
   text-align: center;
 }
@@ -23,6 +37,14 @@ $gunmetal: #293241ff;
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+// .heading-style {
+//   font-family: ;
+// }
+
+h1 {
+  font-family: $heading-font-family;
 }
 
 .App-header {
@@ -82,9 +104,12 @@ $gunmetal: #293241ff;
     left: 2rem;
     background-color: $celadon;
     color: black;
-    border: solid 1px $baby-blue-eyes;
+    border: solid 1px $gunmetal;
     &:hover {
       background-color: $magic-mint;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
     }
   }
   .remove-button {
@@ -92,12 +117,12 @@ $gunmetal: #293241ff;
     left: 2rem;
     background-color: $pink-lavender;
     color: black;
-    border: solid 1px $baby-blue-eyes;
+    border: solid 1px $gunmetal;
     &:hover {
       background-color: $mauve;
-      border: solid 1.5px $gunmetal;
-      font-size: 2rem;
-      font-size: 1.01em;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
     }
   }
 
@@ -106,12 +131,12 @@ $gunmetal: #293241ff;
     left: 9rem;
     background-color: $baby-blue-eyes;
     color: black;
-    border: solid 1px $pink-lavender;
+    border: solid 1px $gunmetal;
     &:hover {
       background-color: $baby-pink;
-      border: solid 1.5px $gunmetal;
-      font-size: 2rem;
-      font-size: 1.01em;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
     }
   }
 
