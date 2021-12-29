@@ -33,7 +33,7 @@ class EventCard extends Component {
     day[0] === '0' && (day = day.slice(1, 2))
     console.log('month Modal: ', day)
     let dateStr = formattedDate.toDateString();
-    let newDate = `${dateStr.slice(0, -8)} ${day} ${dateStr.slice(-4, dateStr.length)}`;
+    let newDate = `${dateStr.slice(4, -8)} ${day} ${dateStr.slice(-4, dateStr.length)}`;
 
     console.log('dateStr Modal: ', dateStr);
     console.log('newDate Modal: ', newDate);
