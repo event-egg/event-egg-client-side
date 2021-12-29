@@ -96,7 +96,7 @@ class EventCard extends Component {
                   <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} changeToMyEvent={this.changeToMyEvent} />}
               </Col>
               <Col>
-                <Button className="more-info-button p-1" onClick={this.handleMoreInfoClick}>More Info</Button>
+                <Button className="more-info-button p-1" variant='light' onClick={this.handleMoreInfoClick}>More Info</Button>
               </Col>
             </Row>
 
