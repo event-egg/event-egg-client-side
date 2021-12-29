@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { Container } from 'react-bootstrap';
 
 
 
@@ -34,15 +35,24 @@ class EventModal extends Component {
                   }}>
                   {this.props.event.description === 'Undefined' ? '' : this.props.event.description}
                 </div>
-                <br />
+                <div style={{border: '1px solid lightgrey'}} className="mb-3" /> 
                 <div className="modal-address">
+                  <Container className='text-center'>
                   <a href={this.props.event.link} target="_blank" rel="noreferrer" className="modal-link">Get Tickets</a> <br />
-                  {this.props.event.localDate} <br />
-                  {this.props.event.localTime} <br />
-                  {this.props.event.address.venueName} <br />
-                  {this.props.event.address.street.line1} <br />
-                  {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
-                  {this.props.event.address.city}, {this.props.event.address.state.stateCode}, {this.props.event.address.zip}
+                  </Container>
+                  <div style={{border: '1px solid lightgrey'}} className="my-3" /> 
+                  <Container className='text-center'>
+                  <strong>Date: </strong> {this.props.event.localDate} 
+                  <div className="my-3" /> 
+                  <strong>Time: </strong>{this.props.event.localTime}
+                  </Container>
+                  <div style={{border: '1px solid lightgrey'}} className="my-3" /> 
+                  <Container className='text-center'>
+                    {this.props.event.address.venueName} <br />
+                    {this.props.event.address.street.line1} <br />
+                    {this.props.event.address.street.line2 && <p>{this.props.event.address.street.line2} </p>}
+                    {this.props.event.address.city}, {this.props.event.address.state.stateCode}, {this.props.event.address.zip}
+                  </Container>
                 </div>
               </>}
           </Modal.Body>

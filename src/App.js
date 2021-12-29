@@ -26,7 +26,8 @@ class App extends Component {
       user: {},
       searchInput: "",
       modalIsShown: false,
-      modalEvent: {}
+      modalEvent: {},
+      isLoading: true
     }
   }
 
