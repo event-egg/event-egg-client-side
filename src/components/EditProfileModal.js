@@ -22,9 +22,10 @@ class EditProfileModal extends Component {
       defaultInterests: interestArray,
       email: this.props.user.email,
     }
-    this.props.updateUser(user, this.props.user._id);
-    this.props.closeModal('profile');
-  }
+    this.props.updateUser(user, this.props.user._id).then(
+      this.props.resetCache()).then(
+        this.props.closeModal('profile')); 
+    }
 
   render() {
     return (
