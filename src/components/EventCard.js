@@ -23,7 +23,6 @@ class EventCard extends Component {
 
   // show modal when user clicks event image
   handleMoreInfoClick = () => {
-    console.log('event type: ', this.props.type)
     this.props.showModal(this.props.event);
   }
 
@@ -31,13 +30,8 @@ class EventCard extends Component {
     let formattedDate = new Date(date);
     let day = date.slice(8, 10);
     day[0] === '0' && (day = day.slice(1, 2))
-    console.log('month Modal: ', day)
     let dateStr = formattedDate.toDateString();
     let newDate = `${dateStr.slice(4, -8)} ${day} ${dateStr.slice(-4, dateStr.length)}`;
-
-    console.log('dateStr Modal: ', dateStr);
-    console.log('newDate Modal: ', newDate);
-
     return newDate;
   }
 
@@ -51,7 +45,6 @@ class EventCard extends Component {
     hour = (hour % 12) || 12;
     let minutes = time.slice(3, 5);
     let formattedTime = `${hour}:${minutes} ${amPm}`;
-    console.log('formattedTime: ', formattedTime);
     return formattedTime;
 
   }
@@ -103,7 +96,7 @@ class EventCard extends Component {
                   <RemoveEventBtn user={this.props.user} event={this.props.event} deleteEvent={this.props.deleteEvent} changeToMyEvent={this.changeToMyEvent} />}
               </Col>
               <Col>
-                <Button className="more-info-button p-1" onClick={this.handleMoreInfoClick}>More Info</Button>
+                <Button className="more-info-button p-1" variant='light' onClick={this.handleMoreInfoClick}>More Info</Button>
               </Col>
             </Row>
 

@@ -137,6 +137,11 @@ h1 {
       border: solid 1px $gunmetal;
       color: black;
       font-size: 1em;
+    } &:focus{
+      background-color: $baby-blue-eyes;
+      color: black;
+      border: solid 1px $gunmetal;
+      box-shadow: 0;
     }
   }
 }
