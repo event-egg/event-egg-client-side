@@ -16,9 +16,9 @@ class AboutCard extends Component {
                 backgroundColor: '#98f5e1',
                 }}>{this.props.bio.name}</Card.Header>
           <Card.Body>
-              <Image roundedCircle className='px-5' fluid variant="top" src={this.props.bio.image} />
+            <Image roundedCircle className='px-5' fluid variant="top" style={{ width: '45rem' }} src={this.props.bio.image} />
                 <Card className='m-3' style={{boxShadow: '3px 3px 2px 2px #0000003f'}}>
-              <Card.Text className='p-3' style={{ textAlign: 'left', height: '11rem' }}>
+              <Card.Text className='p-3' style={{ fontSize: '1.3em', textAlign: 'left', minHeight: '14rem' }}>
                   {this.props.bio.about}
                 </Card.Text>
                 </Card>
