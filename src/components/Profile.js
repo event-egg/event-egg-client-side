@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Badge from 'react-bootstrap/Badge'
-import Stack from 'react-bootstrap/Stack'
 import Container from 'react-bootstrap/Container'
+import {Row, Col } from 'react-bootstrap'
 
 
 
@@ -43,7 +43,7 @@ class Profile extends Component {
           <hr></hr>
         <Container className="d-flex justify-content-center pt-5">
           
-        <Card style={{ minWidth: '350px', maxWidth: '75%', boxShadow: '3px 3px 2px 2px #0000003f', fontSize: '1.2em' }}>
+        <Card style={{ minWidth: '300px', width:'50%', boxShadow: '3px 3px 2px 2px #0000003f', fontSize: '1.2em' }}>
           <Card.Header style={{ 
                 textAlign: 'center', 
                 fontSize: '1.8em', 
@@ -56,17 +56,24 @@ class Profile extends Component {
                 <ListGroupItem><strong>Email:</strong> {this.props.user.email}</ListGroupItem>
                 <ListGroupItem><strong>Location:</strong> {this.props.user.defaultCity}</ListGroupItem>
                 <ListGroupItem><strong>Interests:</strong> <br />
+                <Row xs={1} className='text-center'>
                   {
                     this.props.user.defaultInterests.map(interest =>
-                      <Badge pill bg="success"  key={interest}><span className='pt-1 pb-2'>{interest}</span></Badge>)
-                  }
+                      <Badge pill bg="info" text="light" className='m-1 p-2' key={interest}><span>{interest}</span></Badge>)
+                    }
+                </Row>
                 </ListGroupItem>
-              </ListGroup>         
+              </ListGroup>  
+              <div style={{border: '1px solid lightgrey'}} className="mb-3" />       
             <Container>
-              <Stack direction="horizontal" xs={2} gap={4}>
-                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f'}} variant="outline-success" onClick={() => this.showModal('profile')} >Edit Profile</Button>
-                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f'}} variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
-              </Stack>
+                <Row xs={2}>
+                <Col  className='text-center'>
+                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#8eecf5", fontSize: '1.1em', fontWeight: 'bold'}} variant="outline-primary" onClick={() => this.showModal('profile')} >Edit Profile</Button>
+                </Col>
+                <Col className='text-center'>
+                <Button size="lg" style={{backgroundColor: 'white', boxShadow: '1px 1px 1px 1px #0000003f', backgroundColor: "#f1c0e8", fontSize: '1.1em', fontWeight: 'bold'}}  variant="outline-danger" onClick={() => this.showModal()} >Delete Profile</Button>
+                </Col>
+              </Row>
             </Container>
             </Card.Body>
             <Container>

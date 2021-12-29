@@ -15,13 +15,6 @@ class Welcome extends Component {
           <div style={{border: '1px solid grey'}} />
         </Container>
         <WelcomeForm createUser={this.props.createUser} />
-        <Row className='p-0 m-0'>
-          <Col></Col>
-          <Col className='text-center'>
-              
-          </Col>
-          <Col></Col>
-        </Row>
       </div>
     );
   }
