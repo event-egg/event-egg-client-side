@@ -6,13 +6,12 @@ class RemoveEventBtn extends Component {
   handleRemoveClick = () => {
     this.props.deleteEvent(this.props.user, this.props.event);
     this.props.changeToMyEvent('newEvent');
-    console.log("handle remove")
   }
 
   render() {
     return (
       <div>
-        <Button onClick={this.handleRemoveClick} variant="outline-danger">Remove</Button>
+        <Button onClick={this.handleRemoveClick} className="remove-button p-1" >Remove</Button>
       </div>
     );
   }

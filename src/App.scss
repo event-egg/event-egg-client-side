@@ -1,0 +1,253 @@
+$cream: #fbf8ccff;
+$almond: #fde4cfff;
+$baby-pink: #ffcfd2ff;
+$pink-lavender: #f1c0e8ff;
+$mauve: #cfbaf0ff;
+$baby-blue-eyes: #a3c4f3ff;
+$non-photo-blue: #90dbf4ff;
+$electric-blue: #8eecf5ff;
+$magic-mint: #98f5e1ff;
+$celadon: #b9fbc0ff;
+$gunmetal: #293241ff;
+
+@import url('https://fonts.googleapis.com/css2?family=Pushster&family=Rubik:wght@300&family=Yanone+Kaffeesatz&display=swap');
+$heading-font-family: 'Yanone Kaffeesatz', sans-serif;
+$body-font-family: 'Rubik', sans-serif;
+$logo-font-family: 'Pushter', sans-serf;
+$base-font-size: 18px;
+$base-font-weight: 400;
+// Logo: Pushster
+// Headers and Tagline: Yanone Kaffeesatz
+// Text: Rubik
+
+* {
+  font-family: $body-font-family;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+// .heading-style {
+//   font-family: ;
+// }
+
+h1 {
+  font-family: $heading-font-family;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.search-bar {
+  width: 96%;
+  margin: auto;
+  margin: .5rem;
+  button {
+    font-size: .7em;
+    background-color: $baby-pink;
+    color: black;
+    border: solid 1px $gunmetal;
+  }
+  label, input {
+    font-size: 1.3em;;
+  }
+  .btn {
+    font-size: 1.2em;
+    background-color: $pink-lavender;
+    border: solid 1px $gunmetal;
+    &:hover {
+      background-color: $magic-mint;
+      color: black;
+    }
+  }
+}
+
+.card-container {
+  h1 {
+    text-align: center;
+  }
+}
+
+.card-styled {
+  padding: .7rem;
+  height: 21rem;
+  margin: 1.3rem;
+  img {
+    height: 10rem;
+  }
+  p {
+    height: 0rem;
+    overflow: hidden;
+  }
+  .save-button {
+    bottom: 2rem;
+    left: 2rem;
+    background-color: $celadon;
+    color: black;
+    border: solid 1px $gunmetal;
+    &:hover {
+      background-color: $magic-mint;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
+    }
+  }
+  .remove-button {
+    bottom: 2rem;
+    left: 2rem;
+    background-color: $pink-lavender;
+    color: black;
+    border: solid 1px $gunmetal;
+    &:hover {
+      background-color: $mauve;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
+    }
+  }
+
+  .more-info-button {
+    // bottom: 2rem;
+    // left: 9rem;
+    background-color: $baby-blue-eyes;
+    color: black;
+    border: solid 1px $gunmetal;
+    &:hover {
+      background-color: $baby-pink;
+      border: solid 1px $gunmetal;
+      color: black;
+      font-size: 1em;
+    } &:focus{
+      background-color: $baby-blue-eyes;
+      color: black;
+      border: solid 1px $gunmetal;
+      box-shadow: 0;
+    }
+  }
+}
+
+.event-modal {
+  img {
+    // height: 13rem;
+    border: solid 1.5px $gunmetal;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    box-shadow: 3px 3px 2px 2px#0000003f;
+  }
+  // image still off-center when there is description
+  .modal-body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+  }
+  a {
+    color: $gunmetal;
+    font-weight: bold;
+    background-color: $magic-mint;
+    padding: .2rem;
+    border: solid 1px $baby-blue-eyes;
+    text-decoration: none;
+  }
+  .modal-title {
+    text-align: center;
+    background-color: #8eecf5;
+    padding: .2rem;
+    box-shadow: 3px 3px 2px 2px#0000003f;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .modal-description {
+    margin-left: auto;
+    margin-right: auto;
+    
+    // padding-left: 20px;
+    // padding-right: 20px;
+  }
+  .modal-address {
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .close-modal-button {
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $pink-lavender;
+    &:hover {
+      background-color: $mauve;
+      border: solid 1.5px $gunmetal;
+      font-size: 2rem;
+      font-size: 1.01em;
+  }
+}
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+$breakpoint-tablet: 1399px;
+$breakpoint-tablet-small: 1199px;
+$phone: 991px;
+$small-phone: 767px;
+
+@media (max-width: $breakpoint-tablet) {
+  .card-container {
+    div {
+      justify-content: center;
+    }
+  }
+  .search-bar {
+    margin: auto;
+    margin-bottom: .5rem;
+    width: 82.5%;
+  }
+}
+
+@media (max-width: $breakpoint-tablet-small) {
+  .search-bar {
+    width: 58rem;
+  }
+}
+
+@media (max-width: $phone) {
+  .search-bar {
+    width: 38.5rem;
+  }
+}
+
+@media (max-width: $small-phone) {
+  .search-bar {
+    width: 18rem;
+  }
+}

@@ -1,54 +1,101 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
-import Row from 'react-bootstrap/Row'
+import Search from './Search';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-
-
+import cache from '../cache.js';
+import getCurrentDateTime from '../CurrentDateTime';
 
 class Dashboard extends Component {
 
-  componentDidMount = () => {
-    this.getEvents();
-  }
-
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      events: ""
+      events: "",
+      searchInput: {},
+      error: false,
     }
   }
 
-
-  getEvents = async (keyword) => {
-    console.log("Get Events");
-    const res = await this.props.auth0.getIdTokenClaims();
-    // put token in variable
-    const jwt = res.__raw;
-    const config = {
-      method: 'get',
-      // change back to process.env
-      baseURL: 'http://localhost:3001',
-      url: `/events?keyword=basketball`,
-      headers: {
-        "Authorization": `Bearer ${jwt}`
+  componentDidMount = () => {
+    if (cache.searchInput && Object.keys(cache.searchInput).length > 0) {
+      this.getEvents(cache.searchInput)
+    } // gets previous searchObject from cache
+    else {
+      const defaultObject = {
+        city: this.props.user.defaultCity,
+        interests: this.props.user.defaultInterests,
+        date: getCurrentDateTime()
       }
+      this.setState({ searchInput: defaultObject }, () => this.getEvents(this.state.searchInput))
     }
-    const eventsResponse = await axios(config);
-    console.log('eventsResponse.data: ', eventsResponse.data);
-    this.setState({ events: eventsResponse.data });
+  }
+
+  setSearchState = (searchInput) => {
+    this.setState({ searchInput: searchInput }, () => this.getEvents(this.state.searchInput));
+  }
+
+  resetSearchState = () => {
+    const defaultObject = {
+      city: this.props.user.defaultCity,
+      interests: this.props.user.defaultInterests,
+      date: getCurrentDateTime()
+    }
+    this.setState({ searchInput: defaultObject, events: "" }, () => this.getEvents(this.state.searchInput))
+  }
+
+  getEvents = async (searchObject) => {
+    cache.searchInput = searchObject;
+    try {
+      const res = await this.props.auth0.getIdTokenClaims();
+      // put token in variable
+      const jwt = res.__raw;
+      const config = {
+        method: 'post',
+        // change back to process.env
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: `/events`,
+        data: searchObject,
+        headers: {
+          "Authorization": `Bearer ${jwt}`
+        }
+      }
+      const eventsResponse = await axios(config);
+      this.setState({ events: eventsResponse.data, error: false });
+    } catch (e) {
+      this.setState({ events: {}, error: true });
+    }
+  }
+
+  capitalize(string) {
+    const wordRegex = /\w\S*/g;
+    const firstLetterRegex = /^\w/;
+    string = string.trim().toLowerCase().replace(
+      wordRegex, (word) => word.replace(
+        firstLetterRegex, (letter) => letter.toUpperCase())
+    );
+    return string;
   }
 
 
   render() {
     return (
-      <div>
-        <h1>{this.props.user.defaultCity}</h1> 
-        { this.state.events.length > 0   &&
-        <Row sm={1} md={2} lg={5}>
-            {this.state.events.length > 0 && this.state.events.map(event => <EventCard type="newEvent" event={event} key={event.id} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} />)}
-          </Row>}   
-      </div>
+      <Container className="card-container">
+        <h1 className='m-3' style={{ textAlign: 'center', fontSize: '4em', textShadow: '3px 3px 2px 2px #0000003f' }} >
+          Hatch some plans in {this.state.searchInput.city ?
+            this.capitalize(this.state.searchInput.city) :
+            this.capitalize(this.props.user.defaultCity)}!
+        </h1>
+        <hr></hr>
+        <Search user={this.props.user} setSearchState={this.setSearchState} resetSearchState={this.resetSearchState} />
+        {!this.state.error ?
+          <Row md={3} lg={4}>
+            {this.state.events.length > 0 && this.state.events.map((event, idx) => <EventCard type="newEvent" event={event} key={`${event.id}${idx}`} user={this.props.user} saveEvent={this.props.saveEvent} deleteEvent={this.props.deleteEvent} showModal={this.props.showModal} />)}
+          </Row> :
+          <h1>No Results... Please try another search.</h1>
+        }
+      </Container>
     );
   }
 }
